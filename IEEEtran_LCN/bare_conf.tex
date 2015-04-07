@@ -82,19 +82,20 @@
 %
 \usepackage{color}
 \usepackage{ifpdf}
+\usepackage{filecontents}
 % Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
 % compilation based on whether the output is pdf or dvi.
 % usage:
  \ifpdf
    \usepackage[pdftex]{graphicx}
-   \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.mps}
+   \DeclareGraphicsExtensions{.pdf,.PNG,.jpg,.jpeg,.mps, .PNG}
    \usepackage{pgf}
    \usepackage{tikz}
  \else
    \usepackage{graphicx}
    \DeclareGraphicsExtensions{.eps,.bmp}
    \DeclareGraphicsRule{.emf}{bmp}{}{}% declare EMF filename extension
-   \DeclareGraphicsRule{.png}{bmp}{}{}% declare PNG filename extension
+   \DeclareGraphicsRule{.PNG}{bmp}{}{}% declare PNG filename extension
    \usepackage{pgf}
    \usepackage{tikz}
    \usepackage{pstricks}
@@ -218,7 +219,7 @@
 % correct IEEE style captions. The latest version and documentation of
 % algorithmic.sty can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
-% There is also a support site at:
+% There is also a support site http://matplotlib.org/api/colors_api.htmlat:
 % http://algorithms.berlios.de/index.html
 % Also of interest may be the (relatively newer and more customizable)
 % algorithmicx.sty package by Szasz Janos:
@@ -361,7 +362,6 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-
 \begin{document}
 %
 % paper title
@@ -451,10 +451,26 @@ Identifying applications are critical for a broad range of network related activ
 \section{Introduction}
 Recently, there has been a lot of emphasis on using flow statistics with combination of Machine learning algorithms to determine network based applications. Accurately identifying network based application is of major interest for ISP. Which lets providing Quality based Service(limiting usage of bandwidth by unnecessary applications). 
 
- In this paper, we proposed a new technique which studies the relevance of flow statistics or combination of them to give us better classification. We compared our technique with previously published work. As with most machine learning algorithms, more attributes(not very important)\cite{Erman:2006:TCU:1162678.1162679} may actually hurt the overall accuracy of the classification. So, determining the best combination of attributes and also combination of them helps in actually improving overall accuracy. We developed our own technique, where we used multiple trained models to classifying the incoming flow.
+ In this paper, we proposed a new technique which studies the relevance of flow statistics or combination of them to give us better classification. We compared our technique with previously published work. As with most machine learning algorithms, more attributes(not very important) may actually hurt the overall accuracy of the classification. So, determining the best combination of attributes and also combination of them helps in actually improving overall accuracy. We developed our own technique, where we used multiple trained models to classifying the incoming flow.
 
-\section{Related Work}
+\section{Related Work and Motivation}
+\subsection{Related Study}
+Existing techniques based on port-numbers are proved to be very ineffective where accuracy is less than 70 \cite{}, as number of applications using random port numbers or non-standard port numbers are increasing day-by-day and also usage of tunneling makes identification of application more difficult just based on port numbers. 
 
+To counter drawbacks of port-based application identification, many payload-based techniques have been proposed\cite{}. In payload-based technique, payload of the flow will be extracted and searched for known signature of the applications. Results indicate that this method is very effective with high accuracies. Drawbacks include encrypted traffic, and wide deployment of tools based on payload signature is a problem as many countries doesn't allow the extraction of full payload from packets due to privacy concerns
+
+Drawbacks of both payload-based signature matching and port-based classification led us to use the transport layer characteristics of the application as the differentiator of the application. From various proposed techniques\cite{} we can see combination of transport layer characteristics in combination with Machine learning techniques accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
+
+Classification of network application by using machine learning algorithms is broadly divided into three categories. 
+\textbf{Machine Learning Technqiues}
+\begin{description}
+	\item[Un-supervised] \hfill \\ Labeling information of the training data is not available at the time of training. We use various clustering algorithms for the classification of unlabeled data\cite{}.
+	\item[Supervised] \hfill \\ We provide the labels for the flows when we train the model and then use this model to test each incoming flow whether it belongs to any of the application which is provided at the time of training\cite{}. 
+	\item[Semi-supervised] \hfill \\ We provide partial labeling information at the time of training and we use clustering algorithms to cluster the training data. We use the partially available labeling information to label each cluster. Heuristics have been proposed on how to label the cluster from partial training information\cite{}
+\end{description}
+
+\subsection{Evaluation of existing techniques}
+We extensively tested the currently existing techniques\cite{}. 
 
 \section{Dataset and Cleaning}
 We used dataset provided by Sysmate. Dataset is 100GB of captured data with full payload. Dataset has been captured for isolated applications. We considered 5 applications for our study i.e. Skype, Http, Edonkey, Bittorrent, Gnutella. Used python scapy library to extract packet information from pcap files to built flows. Considered L7 signatures\ref{} to remove any discrepancies in the data by matching regular expressions provided by L7 with the payload for protocols. Used python to generate flow statistics for flow. 
@@ -516,7 +532,7 @@ We observe from fig.\ref{fig_flow} that combination of Total packet size and Pay
 \section{Population Fraction}
 In this paper, we introduced new term called population fraction, which stands for percentage of dominant application (application with most number of flows in the cluster in consideration.) flows to total flows in a cluster
 \begin{equation}
-P_{clus} = \frac{flows_{dominant}}{flows_{total}}
+P_{clus} = (\frac{flows_{dominant}}{flows_{total}})_{clus}
 \end{equation}
 \section{Multiple cluster models used for classification}
 We built four cluster models (used simplest K-Means clustering algorithm) to build the classifier, selecting 2 combinations of attributes from flow attributes, and two combinations of attributes from Packet size attributes. We haven't considered IAT and RIAT in building cluster models as any combination of attributes is not giving higher accuracy. By considering combinations of subset of attributes rather than whole set, as they did in \cite{} we get better accuracy.

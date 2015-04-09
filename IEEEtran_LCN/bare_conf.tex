@@ -298,7 +298,9 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
 
 
-
+\usepackage{caption}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 
 % *** FLOAT PACKAGES ***
 %
@@ -461,116 +463,334 @@ To counter drawbacks of port-based application identification, many payload-base
 
 Drawbacks of both payload-based signature matching and port-based classification led us to use the transport layer characteristics of the application as the differentiator of the application. From various proposed techniques\cite{} we can see combination of transport layer characteristics in combination with Machine learning techniques accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
 
-Classification of network application by using machine learning algorithms is broadly divided into three categories. 
-\textbf{Machine Learning Technqiues}
-\begin{description}
-	\item[Un-supervised] \hfill \\ Labeling information of the training data is not available at the time of training. We use various clustering algorithms for the classification of unlabeled data\cite{}.
-	\item[Supervised] \hfill \\ We provide the labels for the flows when we train the model and then use this model to test each incoming flow whether it belongs to any of the application which is provided at the time of training\cite{}. 
-	\item[Semi-supervised] \hfill \\ We provide partial labeling information at the time of training and we use clustering algorithms to cluster the training data. We use the partially available labeling information to label each cluster. Heuristics have been proposed on how to label the cluster from partial training information\cite{}
-\end{description}
+Classification of network application by using machine learning algorithms is broadly divided into three categories.
+\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
+	\item \emph{Un-supervised} 
+	Labeling information of the training data is not available at the time of training. We use various clustering algorithms for the classification of unlabeled data\cite{}.
+	\item \emph{Supervised} 
+	We provide the labels for the flows when we train the model and then use this model to test each incoming flow whether it belongs to any of the application which is provided at the time of training\cite{}. 
+	\item \emph{Semi-supervised} 
+	We provide partial labeling information at the time of training and we use clustering algorithms to cluster the training data. We use the partially available labeling information to label each cluster. Heuristics have been proposed on how to label the cluster from partial training information\cite{}
+\end{itemize}
 
 \subsection{Evaluation of existing techniques}
-We extensively tested the currently existing techniques\cite{}. 
+We extensively ran existing techniques\cite{} against our dataset. We ran supervised (Adaboost, Naive Bayes), unsupervised (K-Means using all attributes of the flow statistics) and Early Application Identification (K-Means using only Average Packet Size as the attribute for the machine learning algorithm). 
 
-\section{Dataset and Cleaning}
-We used dataset provided by Sysmate. Dataset is 100GB of captured data with full payload. Dataset has been captured for isolated applications. We considered 5 applications for our study i.e. Skype, Http, Edonkey, Bittorrent, Gnutella. Used python scapy library to extract packet information from pcap files to built flows. Considered L7 signatures\ref{} to remove any discrepancies in the data by matching regular expressions provided by L7 with the payload for protocols. Used python to generate flow statistics for flow. 
+We ran ACAS classification technique, which encodes initial \textit{n-bytes} of the payload into space and uses supervised machine learning algorithm as the classification algorithm. We observe this technique is very effective in identifying applications with accuracy over 99\%. Drawback of this technique is it requires completely labeled data. Which means we should know prior to the start classification it should know all the applications that classifier may encounter in future (which is not a feasible solution). It also requires the access to the payload, which is limited in many countries by privacy concerns, and also encryption plays important role in the classification accuracy.
 
-\section{Importance of attributes in classification}
-We have considered a total of 18 flow statistics for our studies.
-\addvbuffer[12pt 8pt]{\begin{tabular}{|c|c|}
-	\hline  Average IAT & Maximum of IAT \\ 
-	\hline  Minimum of IAT & Stadard Deviation of IAT\\ 
-	\hline  Average RIAT & Maximum of RIAT\\ 
-	\hline  Minimum of RIAT& Standard Deviation of RIAT\\
-	\hline  Average Packet Size & Minimum of Packet Size \\  
-	\hline  Maximum of Packet Size & Standard Deviation of Packet Size \\ 
-	\hline  Total Packet Size& Flow Duration\\
-	\hline  Number of Packets & Average Packets/second\\
-	\hline  Average Bytes/second & Payload Size \\ 
-	\hline 
-\end{tabular}}
-We observe from fig.\ref{fig_flow} that combination of Total packet size and Payload size leads to better accuracy along with combination of Number of Packets and Payload size. From fig.\ref{fig_iat} and fig.\ref{fig_riat}, we observe the accuracy is very low. fig.\ref{fig_pkt_size} we observe that combination of Average, Minimum and Maximum packet size and also combination of Average and Standard deviation of packet size leads to better accuracy. Observing the tables we see accuracy is not at its best when we use all the attributes than when we use subset of them. 
+We ran K-Means classification technique, where we use all the available 18 attributes of flow statistics for the classification. We ran experiments to study the effect of the number of clusters\cite{}.
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=7.16in]{flow}
+	\includegraphics[width=7.16in]{k_means_selected_all}
 	% where an .eps filename suffix will be assumed under latex, 
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Accuracy results based on Flow Attributes}
-	\label{fig_flow}
+	\caption{Number of clusters v/s Accuracy for K-Means algorithm with All and Selected attributes}
+	\label{fig_k_means_all}
 \end{figure*}
+We observe from the plot fig.\ref{fig_k_means_all} accuracy of the technique increases as we increase the number of clusters. In fig.\ref{fig_k_means_all} K-Means all Attrs is the accuracy of the existing technique \cite{} and K-Means Selected is the accuracy when we consider only subset of total attributes, based on the selection strategy which we suggested later in the paper. We observe the accuracy of the existing technique is low in comparison with the accuracy of the clustering technique when we consider only subset of the attributes. 
 
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=7.16in]{avg_iat}
+	\includegraphics[width=7.16in]{early_application_result}
 	% where an .eps filename suffix will be assumed under latex, 
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Accuracy results based on IAT Attributes}
-	\label{fig_iat}
+	\caption{Percentage of Training Data v/s Accuracy for Early Application Identification}
+	\label{fig:early_app_identification}
 \end{figure*}
 
-\begin{figure*}[!t]
-	\centering
-	\includegraphics[width=7.16in]{riat}
-	% where an .eps filename suffix will be assumed under latex, 
-	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-	% via \DeclareGraphicsExtensions.
-	\caption{Accuracy results based on RIAT Attributes}
-	\label{fig_riat}
-\end{figure*}
+We ran Early Application Identification\cite{} against our dataset. Instead of considering \emph{Average Packet Size} for first 4 packets as suggested in the paper\cite{}, we considered whole packets \emph{Average Packet Size} of the flow. It can observed from fig.\ref{fig:early_app_identification} that the accuracy increases slowly with increase in the percent of the training set.  
 
+\section{Grouping of Attributes}
+Total attributes considered for the study are 18. 
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Attributes used in out studies}
+	\begin{tabular}{|c|c|}
+		\hline  Average IAT & Maximum of IAT \\ [2pt]
+		\hline  Minimum of IAT & Stadard Deviation of IAT\\ 
+		\hline  Average RIAT & Maximum of RIAT\\ 
+		\hline  Minimum of RIAT& Standard Deviation of RIAT\\
+		\hline  Average Packet Size & Minimum of Packet Size \\  
+		\hline  Maximum of Packet Size & Standard Deviation of Packet Size \\ 
+		\hline  Total Packet Size& Flow Duration\\
+		\hline  Number of Packets & Average Packets/second\\
+		\hline  Average Bytes/second & Payload Size \\ 
+		\hline 
+	\end{tabular}
+\end{table}
+\vspace{5pt}
+\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
+	\item \emph{Flow Size}
+	Total number of bytes transferred during the entire flow.
+	\item \emph{Flow Duration}
+	Difference between time when last packet of the flow captured and first packet of flow captured
+	\item \emph{Packet Size and it's variations}
+	Size of the each packet. We can get \emph{minimum}, \emph{maximum}, \emph{Average} and \emph{Standard deviation} by using all the packets of the flow.
+	\item \emph{Inter Arrival Time and it's variations} 
+	Inter Arrival Time($\tau'$)\cite{} is the time difference between $\tau_{next}$ - $\tau_{current}$.
+	\item \emph{Relative Inter Arrival Time and it's variations} \cite{}
+	Relative inter arrival time is defined as
+	$$\tau'_i = \frac{\tau_i}{\displaystyle \min_{k=1..|f|-1}{\tau_k}}$$
+	Here, $f$ is a flow with $|f|$ number of packets and $\tau_i$ is the time difference between $i$-th packet and $(i+1)$-th packet in that flow.\cite{} 
+\end{itemize}
+\subsection{Preliminary Results}
+Our experiments results for each group of attributes are as following:
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Accuracy based on IAT group}
+	\label{table_iat_group}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline Avg IAT & Min IAT & Max IAT & Std Div IAT & Final Accuracy \\
+		\hline \checkmark & $\times$ & $\times$ & $\times$ & 47.29\% \\
+		\hline $\times$ & \checkmark & $\times$ & $\times$ & 49.34\% \\
+		\hline $\times$ & $\times$ & \checkmark & $\times$ & 39.20\% \\
+		\hline $\times$ & $\times$ & $\times$ & \checkmark & 42.82\% \\
+		\hline \checkmark & \checkmark & $\times$ & $\times$ & 45.86\% \\
+		\hline \checkmark & $\times$ & \checkmark & $\times$ & 44.25\% \\
+		\hline \checkmark & $\times$ & $\times$ & \checkmark & 47.78\% \\
+		\hline $\times$ & \checkmark & \checkmark & $\times$ & 39.64\% \\
+		\hline $\times$ & \checkmark & $\times$ & \checkmark & 42.91\% \\
+		\hline $\times$ & $\times$ & \checkmark & \checkmark & 40.54\% \\
+		\hline \checkmark & \checkmark & \checkmark & $\times$ & 45.20\% \\
+		\hline \checkmark & \checkmark & $\times$ & \checkmark & 47.18\% \\
+		\hline \checkmark & $\times$ & \checkmark & \checkmark & 42.70\% \\
+		\hline $\times$ & \checkmark & \checkmark & \checkmark & 40.10\% \\
+		\hline \checkmark & \checkmark & \checkmark & \checkmark & 42.75\% \\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Accuracy based on RIAT group}
+	\label{table_riat_group}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline Avg RIAT & Max RIAT& Std Div RIAT & Final Accuracy \\
+		\hline \checkmark & $\times$ & $\times$ & 55.86\% \\
+		\hline $\times$ & \checkmark & $\times$ & 54.08\% \\
+		\hline $\times$ & $\times$ & \checkmark & 53.41\% \\
+		\hline \checkmark & \checkmark & $\times$ & 55.21\% \\
+		\hline \checkmark & $\times$ & \checkmark & 54.28\% \\
+		\hline $\times$ & \checkmark & \checkmark & 55.25\% \\
+		\hline \checkmark & \checkmark & \checkmark & 56.41\% \\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Accuracy based on Packet Size group}
+	\label{table_pkt_size_group}
+	\tabcolsep=0.01cm
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline Avg Pkt Size & Min Pkt Size & Max Pkt Size & Std Div Pkt Size & Final Accuracy \\
+		\hline \checkmark & $\times$ & $\times$ & $\times$ & 92.43\% \\
+		\hline $\times$ & \checkmark & $\times$ & $\times$ & 75.95\% \\
+		\hline $\times$ & $\times$ & \checkmark & $\times$ & 92.22\% \\
+		\hline $\times$ & $\times$ & $\times$ & \checkmark & 91.82\% \\
+		\hline \checkmark & \checkmark & $\times$ & $\times$ & 91.46\% \\
+		\hline \checkmark & $\times$ & \checkmark & $\times$ & 92.98\% \\
+		\hline \checkmark & $\times$ & $\times$ & \checkmark & 93.96\% \\
+		\hline $\times$ & \checkmark & \checkmark & $\times$ & 91.46\% \\
+		\hline $\times$ & \checkmark & $\times$ & \checkmark & 92.69\% \\
+		\hline $\times$ & $\times$ & \checkmark & \checkmark & 92.76\% \\
+		\hline \checkmark & \checkmark & \checkmark & $\times$ & 93.98\% \\
+		\hline \checkmark & \checkmark & $\times$ & \checkmark & 93.62\% \\
+		\hline \checkmark & $\times$ & \checkmark & \checkmark & 92.76\% \\
+		\hline $\times$ & \checkmark & \checkmark & \checkmark & 91.73\% \\
+		\hline \checkmark & \checkmark & \checkmark & \checkmark & 93.75\% \\
+		\hline 
+	\end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{1.0}
+\begin{table*}
+	\caption{Accuracy based on Flow attribute group}
+	\label{table_flow_group}
+	\tabcolsep=0.40cm
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline Total Pkt Size & Flow Duration & Number of Packets &  Avg Pkts Per Sec & Avg Bytes Per Sec & Payload Size & Accuracy \\
+		\hline\checkmark & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & 89.05\% \\
+		\hline$\times$ & \checkmark & $\times$ & $\times$ & $\times$ & $\times$ & 40.72\% \\
+		\hline$\times$ & $\times$ & \checkmark & $\times$ & $\times$ & $\times$ & 59.54\% \\
+		\hline$\times$ & $\times$ & $\times$ & \checkmark & $\times$ & $\times$ & 44.98\% \\
+		\hline$\times$ & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ & 50.48\% \\
+		\hline$\times$ & $\times$ & $\times$ & $\times$ & $\times$ & \checkmark & 89.43\% \\
+		\hline\checkmark & \checkmark & $\times$ & $\times$ & $\times$ & $\times$ & 92.92\% \\
+		\hline\checkmark & $\times$ & \checkmark & $\times$ & $\times$ & $\times$ & 91.66\% \\
+		\hline\checkmark & $\times$ & $\times$ & \checkmark & $\times$ & $\times$ & 91.12\% \\
+		\hline\checkmark & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ & 49.91\% \\
+		\hline\checkmark & $\times$ & $\times$ & $\times$ & $\times$ & \checkmark & 94.53\% \\
+		\hline$\times$ & \checkmark & \checkmark & $\times$ & $\times$ & $\times$ & 60.99\% \\
+		\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & $\times$ & 45.13\% \\
+		\hline$\times$ & \checkmark & $\times$ & $\times$ & \checkmark & $\times$ & 49.29\% \\
+		\hline$\times$ & \checkmark & $\times$ & $\times$ & $\times$ & \checkmark & 92.58\% \\
+		\hline$\times$ & $\times$ & \checkmark & \checkmark & $\times$ & $\times$ & 50.00\% \\
+		\hline$\times$ & $\times$ & \checkmark & $\times$ & \checkmark & $\times$ & 50.68\% \\
+		\hline$\times$ & $\times$ & \checkmark & $\times$ & $\times$ & \checkmark & 93.80\% \\
+		\hline$\times$ & $\times$ & $\times$ & \checkmark & \checkmark & $\times$ & 49.74\% \\
+		\hline$\times$ & $\times$ & $\times$ & \checkmark & $\times$ & \checkmark & 87.07\% \\
+		\hline$\times$ & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark & 50.94\% \\
+		\hline\checkmark & \checkmark & \checkmark & $\times$ & $\times$ & $\times$ & 89.95\% \\
+		\hline\checkmark & \checkmark & $\times$ & \checkmark & $\times$ & $\times$ & 92.31\% \\
+		\hline\checkmark & \checkmark & $\times$ & $\times$ & \checkmark & $\times$ & 49.88\% \\
+		\hline\checkmark & \checkmark & $\times$ & $\times$ & $\times$ & \checkmark & 89.54\% \\
+		\hline\checkmark & $\times$ & \checkmark & \checkmark & $\times$ & $\times$ & 86.20\% \\
+		\hline\checkmark & $\times$ & \checkmark & $\times$ & \checkmark & $\times$ & 49.81\% \\
+		\hline\checkmark & $\times$ & \checkmark & $\times$ & $\times$ & \checkmark & 87.25\% \\
+		\hline\checkmark & $\times$ & $\times$ & \checkmark & \checkmark & $\times$ & 50.58\% \\
+		\hline\checkmark & $\times$ & $\times$ & \checkmark & $\times$ & \checkmark & 88.83\% \\
+		\hline\checkmark & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark & 49.14\% \\
+		\hline$\times$ & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ & 47.74\% \\
+		\hline$\times$ & \checkmark & \checkmark & $\times$ & \checkmark & $\times$ & 49.67\% \\
+		\hline$\times$ & \checkmark & \checkmark & $\times$ & $\times$ & \checkmark & 92.02\% \\
+		\hline$\times$ & \checkmark & $\times$ & \checkmark & \checkmark & $\times$ & 49.40\% \\
+		\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 89.36\% \\
+		\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 50.17\% \\
+		\hline$\times$ & $\times$ & \checkmark & \checkmark & \checkmark & $\times$ & 49.45\% \\
+		\hline$\times$ & $\times$ & \checkmark & \checkmark & $\times$ & \checkmark & 88.46\% \\
+		\hline$\times$ & $\times$ & \checkmark & $\times$ & \checkmark & \checkmark & 51.83\% \\
+		\hline$\times$ & $\times$ & $\times$ & \checkmark & \checkmark & \checkmark & 50.90\% \\
+		\hline\checkmark & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ & 91.86\% \\
+		\hline\checkmark & \checkmark & \checkmark & $\times$ & \checkmark & $\times$ & 49.30\% \\
+		\hline\checkmark & \checkmark & \checkmark & $\times$ & $\times$ & \checkmark & 81.47\% \\
+		\hline\checkmark & \checkmark & $\times$ & \checkmark & \checkmark & $\times$ & 49.64\% \\
+		\hline\checkmark & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 85.54\% \\
+		\hline\checkmark & \checkmark & $\times$ & $\times$ & \checkmark & \checkmark & 51.12\% \\
+		\hline\checkmark & $\times$ & \checkmark & \checkmark & \checkmark & $\times$ & 49.76\% \\
+		\hline\checkmark & $\times$ & \checkmark & \checkmark & $\times$ & \checkmark & 83.67\% \\
+		\hline\checkmark & $\times$ & \checkmark & $\times$ & \checkmark & \checkmark & 50.40\% \\
+		\hline\checkmark & $\times$ & $\times$ & \checkmark & \checkmark & \checkmark & 50.46\% \\
+		\hline$\times$ & \checkmark & \checkmark & \checkmark & \checkmark & $\times$ & 50.33\% \\
+		\hline$\times$ & \checkmark & \checkmark & \checkmark & $\times$ & \checkmark & 87.11\% \\
+		\hline$\times$ & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark & 51.16\% \\
+		\hline$\times$ & \checkmark & $\times$ & \checkmark & \checkmark & \checkmark & 51.54\% \\
+		\hline$\times$ & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark & 51.18\% \\
+		\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & $\times$ & 49.20\% \\
+		\hline\checkmark & \checkmark & \checkmark & \checkmark & $\times$ & \checkmark & 80.33\% \\
+		\hline\checkmark & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark & 49.41\% \\
+		\hline\checkmark & \checkmark & $\times$ & \checkmark & \checkmark & \checkmark & 50.08\% \\
+		\hline\checkmark & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark & 51.12\% \\
+		\hline$\times$ & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 51.92\% \\
+		\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 50.93\% \\
+		\hline
+	\end{tabular}
+\end{table*}
+We observe from Table.\ref{table_iat_group}, Table.\ref{table_riat_group}, Table.\ref{table_flow_group} and Table.\ref{table_pkt_size_group} that accuracy is not very good when we consider all the attributes of flow in the classification. When subset of attributes in a group is considered then the accuracy is better than when all attributes in the group are considered. From Table.\ref{table_iat_group}, Table.\ref{table_riat_group} accuracy is very low, this group doesn't make much difference in the accuracy when considered in the classification. From Table.\ref{table_flow_group} and Table.\ref{table_pkt_size_group} we observe accuracy when considering all the attributes is not as good as when we consider subset of them. Table.\ref{table_pkt_size_group} we observe combination of \emph{Avg Pkt Size} and \emph{Std Div Pkt Size} gives the best accuracy of the group, similarly combination of \emph{Min Pkt Size}, \emph{Max Pkt Size} and \emph{Avg Pkt Size} gives second best accuracy of the group. Similarly from Table.\ref{table_flow_group} combination of \emph{Total Pkt Size}, \emph{Payload Size} and also combination of \emph{Payload size}, \emph{Number of Packets in the flow} gives better accuracy in the group. 
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=7.16in]{pkt_size}
+	\includegraphics[width=7.16in]{selected_total_attr_adaboost}
 	% where an .eps filename suffix will be assumed under latex, 
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Accuracy results based on RIAT Attributes}
-	\label{fig_pkt_size}
+	\caption{Percentage of Training data v/s Accuracy for Adaboost}
+	\label{adaboost_selected_total}
 \end{figure*}
-\section{Population Fraction}
+From fig.\ref{adaboost_selected_total}, we observe with only subset (7 out 18 attributes) is giving almost same accuracy(at some points even more), as when we consider total 18 attributes with Adaboost (Supervised) Algorithm\cite{}. Extra attributes is not increasing accuracy at all. With less attributes we have faster classifier. From fig.\ref{fig_k_means_all} we observe selection of subset of attributes increases accuracy dramatically. 
+
+\section{Multiple Cluster Models}
+\subsection{Population Fraction}
 In this paper, we introduced new term called population fraction, which stands for percentage of dominant application (application with most number of flows in the cluster in consideration.) flows to total flows in a cluster
 \begin{equation}
 P_{clus} = (\frac{flows_{dominant}}{flows_{total}})_{clus}
 \end{equation}
-\section{Multiple cluster models used for classification}
-We built four cluster models (used simplest K-Means clustering algorithm) to build the classifier, selecting 2 combinations of attributes from flow attributes, and two combinations of attributes from Packet size attributes. We haven't considered IAT and RIAT in building cluster models as any combination of attributes is not giving higher accuracy. By considering combinations of subset of attributes rather than whole set, as they did in \cite{} we get better accuracy.
+\subsection{Description of the technique used for classification}
+Based on \ref{table_flow_group} and \ref{table_pkt_size_group} we can observe particular combination of attributes results in better accuracy(like \emph{Average Pkt Size} and \emph{Std Div Pkt Size}). From fig.\ref{fig_k_means_all} it can be observed that the accuracy of selected attributes is around 90\%, which can be further improved by considering multiple trained models(with different combination of attributes) than with one trained model(which has superset of combination of attributes used in multiple models). In a single classifier, supervised or unsupervised, we cannot consider combination of attributes as we have to put every attribute to be considered through training model. So, we advised usage of four different models, each with particular combination of attributes. 
+\begin{itemize}
+	\item \emph{Model 1}
+	In this model we considered attributes, Average Pkt Size and Standard Pkt Size.
+	\item \emph{Model 2}
+	We considered Average, Minimum, Maximum Packet size attributes in this model.
+	\item \emph{Model 3}
+	Considered Total Flow Size, Payload Size as the attributes for this model
+	\item \emph{Model 4}
+	Considered Number of Packets, Payload Size as the attributes for this model.
+\end{itemize}
+We use results from four models in determining the final classified result of the incoming flow. We tested different hypothesis. Following are the explanation of hypothesis considered in deciding the final classification result.
+\emph{Considered Strategies}
+\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
+	\item \emph{Random}
+	Select classification of any of the results from the four models as the final classification result
+	\item \emph{Greatest}
+	Select classification result from model with highest population fraction as the final classification result
+	\item \emph{Quorum}
+	Select the majority result from trained models. If we have 3 models resulted in one classification result and other resulted in other application then we consider result of 3 as the final classification result. In case of tie we select application randomly
+	\item \emph{Unanimous}
+	Select the final classification only when all the results from the four models exactly results in the same result. Otherwise mark it as unknown
+	\item \emph{Unanimous Greatest}
+	Similar to unanimous but fallback hypothesis is greatest.
+	\item \emph{Unanimous Random}
+	Similar to unanimous but fallback hypothesis is random
+	\item \emph{Unanimous Quorum}
+	Unanimous with fallback hypothesis as Quorum
+\end{itemize}
 
-Our technique, considers results from all the models in determining the final classification result. We considered six different hypothesis in determining the final classification result from the results from four different models.
+\section{Evaluation}
+\subsection{Datasets}
+Data had been collected with full payload in early-2014. It has been gathered on various interfaces 1) Wired 2) WIFI 3) 3G and LTE. Data had been collected for individual application in isolation, by generating requests intentionally and capturing bidirectional data.  Considered five tuples (i.e., Source IP, destination IP, source port, destination port and protocol). Used TCP flags to mark the start and end of flow(flow started before the capture, or flows terminating after the capture are not considered in construction of flows). 
 
-\textbf{Considered hypothesis}:
-\begin{description}
-	\item[\textbf{Random}]\hfill \\ Select classification of any of the results from the four models as the final classification result
-	\item[\textbf{Greatest}]\hfill \\ Select classification result from model with highest population fraction as the final classification result
-	\item[\textbf{Quorum}]\hfill \\ Select the majority result from trained models. If we have 3 models resulted in one classification result and other resulted in other application then we consider result of 3 as the final classification result. In case of tie we select application randomly
-	\item[\textbf{Unanimous}]\hfill \\ Select the final classification only when all the results from the four models exactly results in the same result. Otherwise mark it as unknown
-	\item[\textbf{Unanimous Greatest}]\hfill \\ Similar to unanimous but fallback hypothesis is greatest.
-	\item[\textbf{Unanimous Random}]\hfill \\ Similar to unanimous but fallback hypothesis is random
-	\item[\textbf{Unanimous Quorum}]\hfill \\ Unanimous with fallback hypothesis as Quorum
-\end{description}
+We selected 5 protocols (Skype, Bittorrent, Http, Edonkey and Gnutella) for further study, criteria for the selection of this protocols is number of flows. 
+\subsection{Cleaning}
+We constructed flows from packets, which we read from \emph{pcap} files using \emph{scapy} a python library. Used community maintained signatures\cite{} available for this protocols from L7 filters. We matched payload of each constructed flow with corresponding signatures from L7, if we find an unmatched flow then it is discarded otherwise labeled as the matched signature.
+
+\subsection{Experimental Setup}
+We used \emph{sklearn} a python library for machine learning algorithms in our study. \emph{sklearn} is the most used python library for data analysis in python. Used \emph{Numpy} for numerical computations, it is a python library to handle numerical computation in efficient way. Used \emph{Matplotlib} for plotting the results, it is a python library which lets us plot the results. 
+
+We divide our data into training and testing partitions. We used training data to train the model and testing data to test the accuracy of the trained model in correctly classifying protocols. 
+During training phase we label clusters in each model(we have 4 of them) based on population fraction(majority based). Each test flow is fed into the trained model and we get the label for that test flow which is compared with the actual label for that flow. Finally 
+
+\begin{equation}
+	Accuracy = \frac{TP}{Total Flows}
+\end{equation}
+ Where $TP$ stands for True positive, meaning correctly identified flow during testing. Total flows are the total number of flows in the testing set.
+
+\subsection{Results}
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=7.16in]{pkt_size}
+	\includegraphics[width=7.16in]{adaboost_all_attr_plot.png}
 	% where an .eps filename suffix will be assumed under latex, 
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Number of Clusters v/s Accuracy}
-	\label{fig_hypo_models}
+	\caption{Percent of training data v/s Accuracy for Adaboost with Groups of Attributes}
+	\label{fig:adaboost_attributes}
 \end{figure*}
-In fig.\ref{fig_hypo_models} Observing the results in the \ref{fig_hypo_models} we can observe that better accuracies are observed for greatest, unanimous greatest and quorum. Accuracy increases with number of clusters for all the hypotheses, but sharp rise in accuracy with number of clusters for unanimous greatest. Out of them we observe the best accuracy for unanimous greatest with 40 clusters.
 
-\section{Results}
 \begin{figure*}[!t]
 	\centering
-\includegraphics[width=7.16in]{super_hypo_accuracy_percent_training}
+	\includegraphics[width=7.16in]{naive_bayes_all_attr_plot.png}
 	% where an .eps filename suffix will be assumed under latex, 
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Percent of training data v/s Accuracy}
-	\label{fig_hypo_accu_percent}
+	\caption{Percent of training data v/s Accuracy for Naive Bayes with Groups of Attributes}
+	\label{fig:naive_attributes}
 \end{figure*}
-We compared our results with supervised, basic K-Means clustering algorithms. Fig.\ref{fig_hypo_accu_percent} shows the result of various algorithms plotted against percent of training data used. In the fig.\ref{fig_hypo_accu_percent} K-Means selected shows the accuracy of basic K-Means algorithm(we considered 40 clusters for all unsupervised algorithms in this figure) plotted when only considered the combination of attributes which is giving best accuracy(we considered all the attributes which were giving better accuracy, but different combination of subsets in our technique). All the plots follow similar kind of pattern, where accuracy increasing along with percentage of training data. Our technique gives better accuracy when compared with simple K-Means clustering almost all the time and also comparatively better accuracy than Adaboost (supervised machine learning algorithm) at some points and at other points it gives around same accuracy as supervised.
+From fig.\ref{fig:adaboost_attributes} we notice classification with highest accuracy at almost all the ratios of training set is observed for Adaboost. Accuracy for Naive Bayes\cite{} from fig.\ref{fig:naive_attributes} is very low when compared with Adaboost, it is not very effective in classifying the protocols.
+
+\begin{figure*}[!t]
+	\centering
+	\includegraphics[width=7.16in]{hypothesis_updated}
+	% where an .eps filename suffix will be assumed under latex, 
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	\caption{Percent of training data v/s Accuracy. Comparison of various strategies }
+	\label{fig:hypo_updated}
+\end{figure*}
+From fig.\ref{fig:hypo_updated}, it can noticed that accuracies are very high for \emph{Quorum}, \emph{Greatest} and \emph{Unanimous Greatest} strategies.
+
+We chose \emph{Unanimous Greatest} for further study. Results for proposed classification technique, Supervised(Adaboost) and K-Means are used for comparison.
+\begin{figure*}[!t]
+	\centering
+	\includegraphics[width=7.16in]{super_hypo_accuracy_percent_training}
+	% where an .eps filename suffix will be assumed under latex, 
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	\caption{Percent of training data v/s Accuracy Comparing all the existing and proposed technique}
+	\label{fig:super_hypo}
+\end{figure*}
+From fig.\ref{fig:super_hypo} we notice that the accuracy is higher than traditional K-Means clustering algorithm at almost all the ratios of the training set. Proposed technique accuracy is comparable to that of the supervised(Adaboost) technique, at times it is higher than supervised too.
+
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.11)  8 APR 2015 13:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.11)  11 APR 2015 15:52
 entering extended mode
 **bare_conf.tex
 (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.tex
@@ -552,19 +552,27 @@ Package: ifnextok 2011/06/27 v0.3 test next token (UL)
 \boxtop@sep=\skip55
 \boxbottom@sep=\skip56
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen184
+\extrarowheight=\dimen185
+\NC@list=\toks32
+\extratabsurround=\skip57
+\backup@length=\skip58
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen184
-\captionmargin@=\dimen185
-\captionwidth=\dimen186
-\caption@tempdima=\dimen187
-\caption@indent=\dimen188
-\caption@parindent=\dimen189
-\caption@hangindent=\dimen190
+\captionmargin=\dimen186
+\captionmargin@=\dimen187
+\captionwidth=\dimen188
+\caption@tempdima=\dimen189
+\caption@indent=\dimen190
+\caption@parindent=\dimen191
+\caption@hangindent=\dimen192
 Package caption Info: Unknown document class (or package),
 (caption)             standard defaults will be used.
 )
@@ -586,164 +594,113 @@ t \footnotesize \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\normalfont
 Package caption Info: floatflt package is loaded.
 Package caption Info: wrapfig package is loaded.
 ) (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 367.
-LaTeX Font Info:    ... okay on input line 367.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 367.
-LaTeX Font Info:    ... okay on input line 367.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 367.
-LaTeX Font Info:    ... okay on input line 367.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 367.
-LaTeX Font Info:    ... okay on input line 367.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 367.
-LaTeX Font Info:    ... okay on input line 367.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 367.
-LaTeX Font Info:    ... okay on input line 367.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count139
-\scratchdimen=\dimen191
+\scratchdimen=\dimen193
 \scratchbox=\box45
 \nofMPsegments=\count140
 \nofMParguments=\count141
-\everyMPshowfont=\toks32
+\everyMPshowfont=\toks33
 \MPscratchCnt=\count142
-\MPscratchDim=\dimen192
+\MPscratchDim=\dimen194
 \MPnumerator=\count143
 \makeMPintoPDFobject=\count144
-\everyMPtoPDFconversion=\toks33
+\everyMPtoPDFconversion=\toks34
 ) ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 467.
+(Font)              <7> on input line 472.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 467.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(Font)              <5> on input line 472.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 472.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 472.
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-<k_means_selected_all.PNG, id=13, 589.0005pt x 444.4605pt>
-File: k_means_selected_all.PNG Graphic file (type png)
-
-<use k_means_selected_all.PNG>
-Package pdftex.def Info: k_means_selected_all.PNG used on input line 484.
-(pdftex.def)             Requested size: 517.45346pt x 390.5093pt.
-
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 484--488
- [][] 
- []
-
-<early_application_result.PNG, id=15, 1734.48pt x 896.8707pt>
+<early_application_result.PNG, id=11, 589.0005pt x 444.4605pt>
 File: early_application_result.PNG Graphic file (type png)
 
 <use early_application_result.PNG>
-Package pdftex.def Info: early_application_result.PNG used on input line 495.
-(pdftex.def)             Requested size: 517.45346pt x 267.5716pt.
-
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 495--499
- [][] 
- []
+Package pdftex.def Info: early_application_result.PNG used on input line 543.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
 
-Underfull \hbox (badness 2057) in paragraph at lines 503--504
-[]\OT1/ptm/m/n/10 We ran Early Ap-pli-ca-tion Iden-ti-fi-ca-tion[] against our
- []
+LaTeX Warning: Reference `fig:early_app_identification' on page 2 undefined on 
+input line 552.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 510.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 510.
+[2 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/early_application_r
+esult.PNG>] <k_means_selected_all.PNG, id=21, 589.0005pt x 444.4605pt>
+File: k_means_selected_all.PNG Graphic file (type png)
 
-LaTeX Warning: Float too large for page by 52.99704pt on input line 680.
+<use k_means_selected_all.PNG>
+Package pdftex.def Info: k_means_selected_all.PNG used on input line 556.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-<selected_total_attr_adaboost.PNG, id=16, 1476.4761pt x 872.2989pt>
+<selected_total_attr_adaboost.PNG, id=22, 589.0005pt x 444.4605pt>
 File: selected_total_attr_adaboost.PNG Graphic file (type png)
 
 <use selected_total_attr_adaboost.PNG>
-Package pdftex.def Info: selected_total_attr_adaboost.PNG used on input line 68
-4.
-(pdftex.def)             Requested size: 517.45346pt x 305.7085pt.
-
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 684--688
- [][] 
- []
-
-[2] [3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/k_means_selected_a
+Package pdftex.def Info: selected_total_attr_adaboost.PNG used on input line 75
+8.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+ [3 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/k_means_selected_a
 ll.PNG>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4454) has occurred while \output is active []
 
-
-Overfull \vbox (23.07996pt too high) has occurred while \output is active []
-
-
-[5 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/early_application_r
-esult.PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/selected_to
-tal_attr_adaboost.PNG>]
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-
-<adaboost_all_attr_plot.png, id=38, 1734.48pt x 896.8707pt>
+ [4 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/selected_total_att
+r_adaboost.PNG>] <adaboost_all_attr_plot.png, id=37, 589.0005pt x 444.4605pt>
 File: adaboost_all_attr_plot.png Graphic file (type png)
 
 <use adaboost_all_attr_plot.png>
-Package pdftex.def Info: adaboost_all_attr_plot.png used on input line 752.
-(pdftex.def)             Requested size: 517.45346pt x 267.5716pt.
+Package pdftex.def Info: adaboost_all_attr_plot.png used on input line 828.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 752--756
- [][] 
- []
-
-<naive_bayes_all_attr_plot.png, id=39, 1734.48pt x 896.8707pt>
+<naive_bayes_all_attr_plot.png, id=38, 589.0005pt x 444.4605pt>
 File: naive_bayes_all_attr_plot.png Graphic file (type png)
 
 <use naive_bayes_all_attr_plot.png>
-Package pdftex.def Info: naive_bayes_all_attr_plot.png used on input line 762.
-(pdftex.def)             Requested size: 517.45346pt x 267.5716pt.
+Package pdftex.def Info: naive_bayes_all_attr_plot.png used on input line 838.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 762--766
- [][] 
- []
-
-<hypothesis_updated.PNG, id=40, 1734.48pt x 896.8707pt>
+<hypothesis_updated.PNG, id=39, 589.0005pt x 444.4605pt>
 File: hypothesis_updated.PNG Graphic file (type png)
 
 <use hypothesis_updated.PNG>
-Package pdftex.def Info: hypothesis_updated.PNG used on input line 773.
-(pdftex.def)             Requested size: 517.45346pt x 267.5716pt.
-
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 773--777
- [][] 
- []
-
-<super_hypo_accuracy_percent_training.PNG, id=41, 1734.48pt x 896.8707pt>
+Package pdftex.def Info: hypothesis_updated.PNG used on input line 849.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+ [5 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/adaboost_all_attr_
+plot.png>]
+<super_hypo_accuracy_percent_training.PNG, id=44, 589.0005pt x 444.4605pt>
 File: super_hypo_accuracy_percent_training.PNG Graphic file (type png)
 
 <use super_hypo_accuracy_percent_training.PNG>
 Package pdftex.def Info: super_hypo_accuracy_percent_training.PNG used on input
- line 785.
-(pdftex.def)             Requested size: 517.45346pt x 267.5716pt.
+ line 861.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-Overfull \hbox (1.45346pt too wide) in paragraph at lines 785--789
- [][] 
- []
-
-[6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/adaboost_all_attr_
-plot.png> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/naive_bayes_
-all_attr_plot.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-No file bare_conf.bbl.
+(C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.bbl [6 <C:/U
+sers/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/naive_bayes_all_attr_plot.p
+ng> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/hypothesis_updated
+.PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/super_hypo_accur
+acy_percent_training.PNG>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -755,33 +712,38 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[8 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/hypothesis_updated.
-PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/super_hypo_accura
-cy_percent_training.PNG>]
-(C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux) ) 
+[7
+
+] (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 13240 strings out of 493921
- 265910 string characters out of 3144863
- 417617 words of memory out of 3000000
- 16295 multiletter control sequences out of 15000+200000
- 34830 words of font info for 68 fonts, out of 3000000 for 9000
+ 13317 strings out of 493921
+ 267084 string characters out of 3144863
+ 345596 words of memory out of 3000000
+ 16364 multiletter control sequences out of 15000+200000
+ 39736 words of font info for 73 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 48i,11n,54p,1264b,553s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/ur
-w/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/ut
-mr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (8 pages, 952015 bytes).
+ 48i,14n,54p,1264b,571s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
+urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
+utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb
+>
+Output written on bare_conf.pdf (7 pages, 547694 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
+ 97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

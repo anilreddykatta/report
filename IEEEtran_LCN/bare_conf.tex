@@ -112,7 +112,10 @@
 % have to be run twice to clear warning/error messages.
 \usepackage{verbatimbox}
 
-
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 
@@ -368,25 +371,24 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Classification of application based on multiple cluster models with selected attributes from Flow statistics}
+\title{Incorporating Multiple Cluster Models for Network Traffic Classification}
 
 
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Anil Kumar}
-\IEEEauthorblockA
-	{Computer Science \& Information Systems\\
-	Texas A \& M Commerce\\
-	Commerce, Texas\\
-	Email:akatta1@leomail.tamuc.edu}
-\and
-\IEEEauthorblockN{Dr.Jinoh Kim}
-\IEEEauthorblockA{Assitant Professor \\
-	Computer Science \& Information Systems\\
-	Texas A \& M Commerce\\
-	Commerce, Texas\\
-	Email:Jinoh.Kim@tamuc.edu}
+\author{\IEEEauthorblockN{Anil Kumar, Jinoh Kim, Sang C. Suh}
+	\IEEEauthorblockA
+	{Department of Computer Science \\
+		Texas A\&M University,
+		Commerce, TX\\
+		Email:akatta1@leomail.tamuc.edu, \\
+		jinoh.kim@tamuc.edu, sang.suh@tamuc.edu}
+	\and
+	\IEEEauthorblockN{Ganho Choi}
+	\IEEEauthorblockA{Sysmate Inc.\\
+		1290 Dunsan-Dong Seo-Gu, Deajeon, 302-830, Korea\\
+		Email: ghchoi@sysmate.com}
 }
 % conference papers do not typically use \thanks and this command
 % is locked out in conference mode. If really needed, such as for
@@ -422,9 +424,12 @@
 % make the title area
 \maketitle
 
-
 \begin{abstract}
-Identifying applications are critical for a broad range of network related activities like bandwidth usage, security etc. Earlier, applications are identified based on port numbers, which proved to be not accurate anymore; based of payload signatures, which is proved to be accurate but has been limited in the real world implementation because of privacy concerns; based on flow statistics, which uses machine learning algorithms to find the patterns in the flow statistics and use it in classification, which has been widely used for many classification problems.  In this research, we explore the importance of the attributes or a combination of flow attributes which can classify applications effectively. The idea is to combine clustering and using combinations of flow attributes and we measure accuracy of each combination. We are currently evaluating our model with real-world traffic traces indicating effectiveness of the selective attributes is effective than using the whole set of attributes.
+	%Identifying applications are critical for a broad range of network related activities like bandwidth usage, security etc. Earlier, applications are identified based on port numbers, which proved to be not accurate anymore; based of payload signatures, which is proved to be accurate but has been limited in the real world implementation because of privacy concerns; based on flow statistics, which uses machine learning algorithms to find the patterns in the flow statistics and use it in classification, which has been widely used for many classification problems.  In this research, we explore the importance of the attributes or a combination of flow attributes which can classify applications effectively. The idea is to combine clustering and using combinations of flow attributes and we measure accuracy of each combination. We are currently evaluating our model with real-world traffic traces indicating effectiveness of the selective attributes is effective than using the whole set of attributes.
+	Network traffic classification is one of essential functions for local and ISP networks for quality of service, network usage statistics, resource provisioning, and security. With its importance, a substantial number of previous studies have explored various machine learning techniques based on network flow statistics to improve the accuracy of classification and reported promising results with fairly high classification accuracy. However, what we observed from previously proposed network traffic classification techniques with our own data set recently collected are somewhat unacceptable results. In particular, we observed that simply combining flow attributes for classification may lead to unexpectedly poor accuracy in classification (less than xx\%).
+	In this paper, we propose a new traffic classification method based on attribute groups, each of which consists of a set of attributes belonging to a single parameter (e.g., packet size, inter-arrival time, etc).
+	Our method then incorporates multiple cluster models obtained from individual attribute groups to reach the final classification decision based on the population of candidate protocols (or applications).
+	From our extensive experiments, we observed that our proposed technique significantly outperforms existing cluster-based classification techniques, showing up to yy\% better accuracy.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -451,90 +456,159 @@ Identifying applications are critical for a broad range of network related activ
 
 
 \section{Introduction}
-Recently, there has been a lot of emphasis on using flow statistics with combination of Machine learning algorithms to determine network based applications. Accurately identifying network based application is of major interest for ISP. Which lets providing Quality based Service(limiting usage of bandwidth by unnecessary applications). 
 
- In this paper, we proposed a new technique which studies the relevance of flow statistics or combination of them to give us better classification. We compared our technique with previously published work. As with most machine learning algorithms, more attributes(not very important) may actually hurt the overall accuracy of the classification. So, determining the best combination of attributes and also combination of them helps in actually improving overall accuracy. We developed our own technique, where we used multiple trained models to classifying the incoming flow.
+Accurately identifying network-based applications is of major interest for local and ISP networks for various purposes, including
+quality of service, network usage statistics, resource provisioning, and security~\cite{Bernaille:2006:EAI:1368436.1368445, DBLP:conf/iwcmc/GrimaudoMB12, DBLP:conf/infocom/XieIKFN12}.
+Earlier, network protocols/applications were identified simply based on TCP/UDP port numbers.
+%, but the traditional identification technique is no longer reliable since many of existing and newly emerging network applications allow dynamic port selection without relying on standard port numbers~\cite{Ohzahata:2005, BitTorrentProto}.
+However, the traditional technique based on port-numbers are proved to be ineffective where accuracy is less than 70\%~\cite{ACAS} since network applications using random port numbers or non-standard port numbers are increasing day-by-day and also usage of tunneling makes identification of applications more difficult just based on port numbers.
+Due to this reason, a substantial body of research has been conducted to replace or complement the port-based identification. 
+
+One approach to overcome the limitation of the port-based identification is to inspect the packet payload information with template signature sets~\cite{conf/IEEEcit/YeXWP09,DBLP:conf/noms/ParkWKH08} or machine learning techniques~\cite{ACAS}.
+While highly accurate,  drawbacks of the deep packet inspection-based approach include encrypted traffic transformed with cryptographic keys and privacy concerns as many countries do not permit the extraction of full payload information from packets with increasing privacy requirements.
+
+The limitations of the traditional port-based identification and the payload inspection-based classification suggested to utilize  transport layer characteristics of the application as the differentiator. From previously proposed techniques~\cite{}, we can see the combination of transport layer characteristics with machine learning techniques would be an effective alternative for network traffic classification. %accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
+Several techniques were proposed based on supervised learning~\cite{}, while some other techniques utilized unsupervised or semi-supervised clustering techniques~\cite{}, reporting promising  accuracy for network traffic classification.
+However, what we actually observed from previously proposed network traffic classification techniques with our own data set recently collected are somewhat unacceptable results. In particular, one important observation is that simply combining flow attributes for classification leads to unexpectedly poor accuracy in classification (less than xx\%), which motivates us to thoroughly examine the impact of flow attributes in this work.\footnote{A (network) flow is defined as a set of packets for a single session of communication with the five tuples of source IP address, destination IP address, source port number, destination port number, and protocol type.} 
+
+%An alternative approach is to utilize machine learning-based classification techniques with flow statistics, such as flow size, flow duration, packet size, packet inter-arrival time, and so forth, without having privacy concerns~\cite{}.
+
+To evaluate the significance of flow attributes to classification accuracy, we use a notion of attribute groups.
+%In this paper, we propose a new traffic classification method based on clustering with the
+An attribute group consists of a set of attributes that are derived from a single communication characteristic.
+For example, the packet size group includes the minimum packet size, maximum packet size, average packet size, standard deviation of packet sizes observed from a single flow.
+We consider four attribute groups of flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group, as will be discussed in the Section~\ref{sec:grouping} in detail.
+From our preliminary experiments, we observed that some combinations of attributes work quite better than the other combinations.
+Moreover, simply applying a subset of attributes selected based on the evaluation to supervised techniques significantly improves performance compared to using the entire attributes without selection.
+With the initial observations, we developed a new semi-supervised learning technique based on the attribute groups.
+A key challenge for this approach is how to use multiple attribute groups to make a single classification decision.
+To address this, we establish independent cluster models based on individual attribute groups and incorporate the results collected from multiple cluster models. 
+Although it is known that clustering techniques generally work poorly compared to supervised learning techniques~\cite{DBLP:conf/infocom/XieIKFN12}, we will present that the proposed technique using multiple cluster models yield comparable classification accuracy.
+
+The key contributions of this paper can be summarized as follows:
+
+\begin{itemize}
+	\item We evaluate the significance of flow attributes to classification accuracy with a notion of attribute group.
+	We used 18 flow attributes in total and four groups are formed, which are flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group.
+	\item From the evaluation results with the attribute groups, we examine classification accuracy with the entire attributes and with the selected ones using supervised learning methods, to ensure  validity of the selection. 
+	\item We present a new clustering technique for network traffic classification that utilizes multiple cluster models developed from the attribute groups. A set of heuristic algorithms are also presented to incorporate multiple cluster models.
+	\item We also present experimental results for evaluating the proposed traffic classification technique. Experiments for sensitivity study are also conducted to see the impact of configurable parameters.
+\end{itemize}
+
+The paper organization is as follows. We provide a summary of related studies
+in Section~\ref{sec:related}.
+In Section~\ref{sec:grouping}, we examine the significance of attribute groups to classification accuracy and performance with selected attributes with supervised learning methods.
+We then present the new clustering technique incorporating multiple cluster models in Section~\ref{sec:multi_cluster} and evaluation results are presented in Section~\ref{sec:eval}.
+Finally we conclude our presentation with a summary and future direction in Section~\ref{sec:conc}.
 
 \section{Related Work and Motivation}
-\subsection{Related Study}
-Existing techniques based on port-numbers are proved to be very ineffective where accuracy is less than 70 \cite{}, as number of applications using random port numbers or non-standard port numbers are increasing day-by-day and also usage of tunneling makes identification of application more difficult just based on port numbers. 
+\label{sec:related}
+%\subsection{Related Study}
+%Existing techniques based on port-numbers are proved to be very ineffective where accuracy is less than 70 \cite{}, as number of applications using random port numbers or non-standard port numbers are increasing day-by-day and also usage of tunneling makes identification of application more difficult just based on port numbers.
+%
+%To counter drawbacks of port-based application identification, many payload-based techniques have been proposed\cite{}. In payload-based technique, payload of the flow will be extracted and searched for known signature of the applications. Results indicate that this method is very effective with high accuracies. Drawbacks include encrypted traffic, and wide deployment of tools based on payload signature is a problem as many countries doesn't allow the extraction of full payload from packets due to privacy concerns
+%
+%Drawbacks of both payload-based signature matching and port-based classification led us to use the transport layer characteristics of the application as the differentiator of the application. From various proposed techniques\cite{} we can see combination of transport layer characteristics in combination with Machine learning techniques accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
 
-To counter drawbacks of port-based application identification, many payload-based techniques have been proposed\cite{}. In payload-based technique, payload of the flow will be extracted and searched for known signature of the applications. Results indicate that this method is very effective with high accuracies. Drawbacks include encrypted traffic, and wide deployment of tools based on payload signature is a problem as many countries doesn't allow the extraction of full payload from packets due to privacy concerns
+A substantial body of research has been conducted for network traffic classification with machine learning techniques.
+The work can broadly be divided into the following three categories:
 
-Drawbacks of both payload-based signature matching and port-based classification led us to use the transport layer characteristics of the application as the differentiator of the application. From various proposed techniques\cite{} we can see combination of transport layer characteristics in combination with Machine learning techniques accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
-
-Classification of network application by using machine learning algorithms is broadly divided into three categories.
 \begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
-	\item \emph{Un-supervised} 
+	\item \emph{Un-supervised}~\cite{}:
 	Labeling information of the training data is not available at the time of training. We use various clustering algorithms for the classification of unlabeled data\cite{}.
-	\item \emph{Supervised} 
-	We provide the labels for the flows when we train the model and then use this model to test each incoming flow whether it belongs to any of the application which is provided at the time of training\cite{}. 
-	\item \emph{Semi-supervised} 
+	\item \emph{Supervised}~\cite{}:
+	We provide the labels for the flows when we train the model and then use this model to test each incoming flow whether it belongs to any of the application which is provided at the time of training\cite{}.
+	\item \emph{Semi-supervised}~\cite{}: 
 	We provide partial labeling information at the time of training and we use clustering algorithms to cluster the training data. We use the partially available labeling information to label each cluster. Heuristics have been proposed on how to label the cluster from partial training information\cite{}
 \end{itemize}
 
-\subsection{Evaluation of existing techniques}
-We extensively ran existing techniques\cite{} against our dataset. We ran supervised (Adaboost, Naive Bayes), unsupervised (K-Means using all attributes of the flow statistics) and Early Application Identification (K-Means using only Average Packet Size as the attribute for the machine learning algorithm). 
+%We extensively ran existing techniques\cite{} against our dataset. We ran supervised (Adaboost, Naive Bayes), unsupervised (K-Means using all attributes of the flow statistics) and Early Application Identification (K-Means using only Average Packet Size as the attribute for the machine learning algorithm).
 
-We ran ACAS classification technique, which encodes initial \textit{n-bytes} of the payload into space and uses supervised machine learning algorithm as the classification algorithm. We observe this technique is very effective in identifying applications with accuracy over 99\%. Drawback of this technique is it requires completely labeled data. Which means we should know prior to the start classification it should know all the applications that classifier may encounter in future (which is not a feasible solution). It also requires the access to the payload, which is limited in many countries by privacy concerns, and also encryption plays important role in the classification accuracy.
+\textbf{ACAS}\cite{ACAS}: In paper\cite{ACAS}, they explored the problem of network traffic classification by \emph{automatically developing signatures} for various network based applications. ACAS encodes initial\textit{n-bytes}of the payload into space and uses supervised machine learning algorithm as the classification algorithm. They did experiments with various settings of the initial \textit{n-bytes} and observed accuracies more than $99\%$ for both settings of the initial bytes. 
+We observe this technique is effective in identifying applications with very high accuracy with our data set ($\approx$ 99\%). Drawback of this technique is it requires completely labeled data. Which means we should know prior to the start classification it should know all the applications that classifier may encounter in future (which is not a feasible solution). It also 
+As mentioned, however, it requires the access to the payload, which could be limited by laws due to privacy concerns. In addition, encryption plays an important role in classification, which may significantly lower the accuracy.
 
-We ran K-Means classification technique, where we use all the available 18 attributes of flow statistics for the classification. We ran experiments to study the effect of the number of clusters\cite{}.
-\begin{figure*}[!t]
+\textbf{K-Means classification technique}\cite{Erman:2006:TCU:1162678.1162679}. 
+%We ran K-Means classification technique, where we use all the available 18 attributes of flow statistics for the classification. We ran experiments to study the effect of the number of clusters\cite{}. 
+Main idea of the paper\cite{Erman:2006:TCU:1162678.1162679} is using of K-Means and DBSCAN clustering algorithms which were not used earlier for network traffic classification.  They identified DBSCAN algorithm is the only algorithm which labeled traffic as noise.The time of building the models is very low for K-Means algorithm. They claim K-Means accuracy on an average is around $84\%$.
+We ran the K-Means classification technique across by varying the number of clusters from 10 to 140, and Figure~\ref{fig_k_means_all} show the result.
+As can be seen from the figure, classification performance is largely not acceptable with quite less than 70\% accuracy.
+%In fig.\ref{fig_k_means_all} K-Means all Attrs is the accuracy of the existing technique \cite{} and K-Means Selected is the accuracy when we consider only subset of total attributes, based on the selection strategy which we suggested later in the paper. We observe the accuracy of the existing technique is low in comparison with the accuracy of the clustering technique when we consider only subset of the attributes.
+
+
+\textbf{Early Application Identification}.\cite{Bernaille:2006:EAI:1368436.1368445}
+%We ran Early Application Identification\cite{} against our dataset. Instead of considering \emph{Average Packet Size} for first 4 packets as suggested in the paper\cite{}, we considered whole packets \emph{Average Packet Size} of the flow. It can observed from fig.\ref{fig:early_app_identification} that the accuracy increases slowly with increase in the percent of the training set.
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=7.16in]{k_means_selected_all}
-	% where an .eps filename suffix will be assumed under latex, 
+	\includegraphics[width=1\columnwidth]{early_application_result}
+	% where an .eps filename suffix will be assumed under latex,
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	\caption{\% of training data v/s Accuracy with only average packet size as attribute. We have considered Average Packet Size as the only attribute for K-Means algorithm. We observe that accuracy reaches around 90\% when we have around 95\% of training data}
+	\label{early_app_identification}
+\end{figure}
+In the paper\cite{Bernaille:2006:EAI:1368436.1368445}, they described new technique by which identification of the application can be achieved at the earliest. They discussed the usage of only first \textit{4 packets} in the classification, by which we can identify the application as soon as possible. They propose that by using only Average Packet size of the flow is enough to get desired classification accuracy.They claim the accuracy of 98\% can be achieved by using only Average Packet Size  as the attribute for machine learning algorithms.
+We also evaluated this technique. Rather than considering only the first 4 packets in a flow as suggested in the paper, we considered the whole packets to see the maximum performance.
+Although this technique is based on clustering as the above technique and uses only the average packet size attribute, it yielded quite enhanced results as shown in Figure~\ref{fig:early_app_identification} across diverse ratios between training data set and testing data set. 
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=1\columnwidth]{k_means_selected_all}
+	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
 	\caption{Number of clusters v/s Accuracy for K-Means algorithm with All and Selected attributes}
 	\label{fig_k_means_all}
-\end{figure*}
-We observe from the plot fig.\ref{fig_k_means_all} accuracy of the technique increases as we increase the number of clusters. In fig.\ref{fig_k_means_all} K-Means all Attrs is the accuracy of the existing technique \cite{} and K-Means Selected is the accuracy when we consider only subset of total attributes, based on the selection strategy which we suggested later in the paper. We observe the accuracy of the existing technique is low in comparison with the accuracy of the clustering technique when we consider only subset of the attributes. 
-
-\begin{figure*}[!t]
-	\centering
-	\includegraphics[width=7.16in]{early_application_result}
-	% where an .eps filename suffix will be assumed under latex, 
-	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-	% via \DeclareGraphicsExtensions.
-	\caption{Percentage of Training Data v/s Accuracy for Early Application Identification}
-	\label{fig:early_app_identification}
-\end{figure*}
-
-We ran Early Application Identification\cite{} against our dataset. Instead of considering \emph{Average Packet Size} for first 4 packets as suggested in the paper\cite{}, we considered whole packets \emph{Average Packet Size} of the flow. It can observed from fig.\ref{fig:early_app_identification} that the accuracy increases slowly with increase in the percent of the training set.  
+\end{figure}
 
 \section{Grouping of Attributes}
+\label{sec:grouping}
 Total attributes considered for the study are 18. 
 \renewcommand{\arraystretch}{1.5}
-\begin{table}
+\begin{table*}
 	\caption{Attributes used in out studies}
-	\begin{tabular}{|c|c|}
-		\hline  Average IAT & Maximum of IAT \\ [2pt]
-		\hline  Minimum of IAT & Stadard Deviation of IAT\\ 
-		\hline  Average RIAT & Maximum of RIAT\\ 
-		\hline  Minimum of RIAT& Standard Deviation of RIAT\\
-		\hline  Average Packet Size & Minimum of Packet Size \\  
-		\hline  Maximum of Packet Size & Standard Deviation of Packet Size \\ 
-		\hline  Total Packet Size& Flow Duration\\
-		\hline  Number of Packets & Average Packets/second\\
-		\hline  Average Bytes/second & Payload Size \\ 
-		\hline 
+	\label{table_attributes_description}
+	\begin{tabular}{|c|L{2.8in}|L{2.8in}|}
+		\hline Name & Description & Related Attributes \\
+		\hline IAT  & Inter Arrival Time, time difference between $i^{th}$ and $i+1^{th}$ packets & Standard Deviation IAT\newline Minimum IAT\newline Maximum IAT\newline Average IAT \\
+		\hline RIAT & Relative Inter Arrival Time, IAT of the the packet divided my mimimum of IAT & Average RIAT\newline Standard Deviation of RIAT\newline Minimum RIAT\newline Maximum of RIAT \\
+		\hline Packet Size & Size of the packet in the flow including headers & Average Packet Size\newline Standard Deviation of Packet Size\newline Minimum Packet Size\newline Maximum Packet Size \\
+		\hline Flow Duration & Duration of the entire flow from initiation to termination & Flow Duration\\
+		\hline Total Packet Size & Summation of the packet sizes of all the packets inside the flow & Total Packet Size \\
+		\hline Number of Packets & Total number of packets inside the flow & Number of Packets \\
+		\hline Packets per Second & $ \frac{Number of Packets}{Flow Duration} $ & Average Packets Per Second\\
+		\hline Bytes Per Second & $ \frac{Total Packet Size}{Flow Duration} $ & Average Bytes Per Second \\
+		\hline Payload Size & $Size_{Paload Size} = Size_{Total} - Size_{header } $ & Payload Size \\
+		\hline
 	\end{tabular}
-\end{table}
-\vspace{5pt}
-\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
-	\item \emph{Flow Size}
-	Total number of bytes transferred during the entire flow.
-	\item \emph{Flow Duration}
-	Difference between time when last packet of the flow captured and first packet of flow captured
-	\item \emph{Packet Size and it's variations}
-	Size of the each packet. We can get \emph{minimum}, \emph{maximum}, \emph{Average} and \emph{Standard deviation} by using all the packets of the flow.
-	\item \emph{Inter Arrival Time and it's variations} 
-	Inter Arrival Time($\tau'$)\cite{} is the time difference between $\tau_{next}$ - $\tau_{current}$.
-	\item \emph{Relative Inter Arrival Time and it's variations} \cite{}
-	Relative inter arrival time is defined as
-	$$\tau'_i = \frac{\tau_i}{\displaystyle \min_{k=1..|f|-1}{\tau_k}}$$
-	Here, $f$ is a flow with $|f|$ number of packets and $\tau_i$ is the time difference between $i$-th packet and $(i+1)$-th packet in that flow.\cite{} 
-\end{itemize}
+	%\begin{tabular}{|c|c|}
+	%	\hline  Average IAT & Maximum of IAT \\ [2pt]
+	%	\hline  Minimum of IAT & Stadard Deviation of IAT\\ 
+	%	\hline  Average RIAT & Maximum of RIAT\\ 
+	%	\hline  Minimum of RIAT& Standard Deviation of RIAT\\
+	%	\hline  Average Packet Size & Minimum of Packet Size \\  
+	%	\hline  Maximum of Packet Size & Standard Deviation of Packet Size \\ 
+	%	\hline  Total Packet Size& Flow Duration\\
+	%	\hline  Number of Packets & Average Packets/second\\
+	%	\hline  Average Bytes/second & Payload Size \\ 
+	%	\hline 
+%	\end{tabular}
+\end{table*}
+%\vspace{5pt}
+%\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
+%	\item \emph{Flow Size}
+%	Total number of bytes transferred during the entire flow.
+%	\item \emph{Flow Duration}
+%	Difference between time when last packet of the flow captured and first packet of flow captured
+%	\item \emph{Packet Size and it's variations}
+%	Size of the each packet. We can get \emph{minimum}, \emph{maximum}, \emph{Average} and \emph{Standard deviation} by using all the packets of the flow.
+%	\item \emph{Inter Arrival Time and it's variations} 
+%	Inter Arrival Time($\tau'$)\cite{} is the time difference between $\tau_{next}$ - $\tau_{current}$.
+%	\item \emph{Relative Inter Arrival Time and it's variations} \cite{}
+%	Relative inter arrival time is defined as
+%	$$\tau'_i = \frac{\tau_i}{\displaystyle \min_{k=1..|f|-1}{\tau_k}}$$
+%	Here, $f$ is a flow with $|f|$ number of packets and $\tau_i$ is the time difference between $i$-th packet and $(i+1)$-th packet in that flow.\cite{} 
+%\end{itemize}
 \subsection{Preliminary Results}
 Our experiments results for each group of attributes are as following:
 \renewcommand{\arraystretch}{1.5}
@@ -610,87 +684,88 @@ Our experiments results for each group of attributes are as following:
 	\caption{Accuracy based on Flow attribute group}
 	\label{table_flow_group}
 	\tabcolsep=0.40cm
-	\begin{tabular}{|c|c|c|c|c|c|c|}
+	\begin{tabular}{|c|c|C{0.8in}|c|c|c|c|}
 		\hline Total Pkt Size & Flow Duration & Number of Packets &  Avg Pkts Per Sec & Avg Bytes Per Sec & Payload Size & Accuracy \\
-		\hline\checkmark & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & 89.05\% \\
-		\hline$\times$ & \checkmark & $\times$ & $\times$ & $\times$ & $\times$ & 40.72\% \\
-		\hline$\times$ & $\times$ & \checkmark & $\times$ & $\times$ & $\times$ & 59.54\% \\
-		\hline$\times$ & $\times$ & $\times$ & \checkmark & $\times$ & $\times$ & 44.98\% \\
-		\hline$\times$ & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ & 50.48\% \\
-		\hline$\times$ & $\times$ & $\times$ & $\times$ & $\times$ & \checkmark & 89.43\% \\
+		%\hline\checkmark & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & 89.05\% \\
+		%\hline$\times$ & \checkmark & $\times$ & $\times$ & $\times$ & $\times$ & 40.72\% \\
+		%\hline$\times$ & $\times$ & \checkmark & $\times$ & $\times$ & $\times$ & 59.54\% \\
+		%\hline$\times$ & $\times$ & $\times$ & \checkmark & $\times$ & $\times$ & 44.98\% \\
+		%\hline$\times$ & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ & 50.48\% \\
+	%	\hline$\times$ & $\times$ & $\times$ & $\times$ & $\times$ & \checkmark & 89.43\% \\
 		\hline\checkmark & \checkmark & $\times$ & $\times$ & $\times$ & $\times$ & 92.92\% \\
 		\hline\checkmark & $\times$ & \checkmark & $\times$ & $\times$ & $\times$ & 91.66\% \\
 		\hline\checkmark & $\times$ & $\times$ & \checkmark & $\times$ & $\times$ & 91.12\% \\
-		\hline\checkmark & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ & 49.91\% \\
+		%\hline\checkmark & $\times$ & $\times$ & $\times$ & \checkmark & $\times$ & 49.91\% \\
 		\hline\checkmark & $\times$ & $\times$ & $\times$ & $\times$ & \checkmark & 94.53\% \\
-		\hline$\times$ & \checkmark & \checkmark & $\times$ & $\times$ & $\times$ & 60.99\% \\
-		\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & $\times$ & 45.13\% \\
-		\hline$\times$ & \checkmark & $\times$ & $\times$ & \checkmark & $\times$ & 49.29\% \\
+		%\hline$\times$ & \checkmark & \checkmark & $\times$ & $\times$ & $\times$ & 60.99\% \\
+		%\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & $\times$ & 45.13\% \\
+		%\hline$\times$ & \checkmark & $\times$ & $\times$ & \checkmark & $\times$ & 49.29\% \\
 		\hline$\times$ & \checkmark & $\times$ & $\times$ & $\times$ & \checkmark & 92.58\% \\
-		\hline$\times$ & $\times$ & \checkmark & \checkmark & $\times$ & $\times$ & 50.00\% \\
-		\hline$\times$ & $\times$ & \checkmark & $\times$ & \checkmark & $\times$ & 50.68\% \\
+		%\hline$\times$ & $\times$ & \checkmark & \checkmark & $\times$ & $\times$ & 50.00\% \\
+		%\hline$\times$ & $\times$ & \checkmark & $\times$ & \checkmark & $\times$ & 50.68\% \\
 		\hline$\times$ & $\times$ & \checkmark & $\times$ & $\times$ & \checkmark & 93.80\% \\
-		\hline$\times$ & $\times$ & $\times$ & \checkmark & \checkmark & $\times$ & 49.74\% \\
-		\hline$\times$ & $\times$ & $\times$ & \checkmark & $\times$ & \checkmark & 87.07\% \\
-		\hline$\times$ & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark & 50.94\% \\
-		\hline\checkmark & \checkmark & \checkmark & $\times$ & $\times$ & $\times$ & 89.95\% \\
+		%\hline$\times$ & $\times$ & $\times$ & \checkmark & \checkmark & $\times$ & 49.74\% \\
+	%	\hline$\times$ & $\times$ & $\times$ & \checkmark & $\times$ & \checkmark & 87.07\% \\
+		%\hline$\times$ & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark & 50.94\% \\
+	%	\hline\checkmark & \checkmark & \checkmark & $\times$ & $\times$ & $\times$ & 89.95\% \\
 		\hline\checkmark & \checkmark & $\times$ & \checkmark & $\times$ & $\times$ & 92.31\% \\
-		\hline\checkmark & \checkmark & $\times$ & $\times$ & \checkmark & $\times$ & 49.88\% \\
-		\hline\checkmark & \checkmark & $\times$ & $\times$ & $\times$ & \checkmark & 89.54\% \\
-		\hline\checkmark & $\times$ & \checkmark & \checkmark & $\times$ & $\times$ & 86.20\% \\
-		\hline\checkmark & $\times$ & \checkmark & $\times$ & \checkmark & $\times$ & 49.81\% \\
-		\hline\checkmark & $\times$ & \checkmark & $\times$ & $\times$ & \checkmark & 87.25\% \\
-		\hline\checkmark & $\times$ & $\times$ & \checkmark & \checkmark & $\times$ & 50.58\% \\
-		\hline\checkmark & $\times$ & $\times$ & \checkmark & $\times$ & \checkmark & 88.83\% \\
-		\hline\checkmark & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark & 49.14\% \\
-		\hline$\times$ & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ & 47.74\% \\
-		\hline$\times$ & \checkmark & \checkmark & $\times$ & \checkmark & $\times$ & 49.67\% \\
+		%\hline\checkmark & \checkmark & $\times$ & $\times$ & \checkmark & $\times$ & 49.88\% \\
+	%	\hline\checkmark & \checkmark & $\times$ & $\times$ & $\times$ & \checkmark & 89.54\% \\
+	%	\hline\checkmark & $\times$ & \checkmark & \checkmark & $\times$ & $\times$ & 86.20\% \\
+		%\hline\checkmark & $\times$ & \checkmark & $\times$ & \checkmark & $\times$ & 49.81\% \\
+	%	\hline\checkmark & $\times$ & \checkmark & $\times$ & $\times$ & \checkmark & 87.25\% \\
+		%\hline\checkmark & $\times$ & $\times$ & \checkmark & \checkmark & $\times$ & 50.58\% \\
+	%	\hline\checkmark & $\times$ & $\times$ & \checkmark & $\times$ & \checkmark & 88.83\% \\
+		%\hline\checkmark & $\times$ & $\times$ & $\times$ & \checkmark & \checkmark & 49.14\% \\
+		%\hline$\times$ & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ & 47.74\% \\
+		%\hline$\times$ & \checkmark & \checkmark & $\times$ & \checkmark & $\times$ & 49.67\% \\
 		\hline$\times$ & \checkmark & \checkmark & $\times$ & $\times$ & \checkmark & 92.02\% \\
-		\hline$\times$ & \checkmark & $\times$ & \checkmark & \checkmark & $\times$ & 49.40\% \\
-		\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 89.36\% \\
-		\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 50.17\% \\
-		\hline$\times$ & $\times$ & \checkmark & \checkmark & \checkmark & $\times$ & 49.45\% \\
-		\hline$\times$ & $\times$ & \checkmark & \checkmark & $\times$ & \checkmark & 88.46\% \\
-		\hline$\times$ & $\times$ & \checkmark & $\times$ & \checkmark & \checkmark & 51.83\% \\
-		\hline$\times$ & $\times$ & $\times$ & \checkmark & \checkmark & \checkmark & 50.90\% \\
+		%\hline$\times$ & \checkmark & $\times$ & \checkmark & \checkmark & $\times$ & 49.40\% \\
+	%	\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 89.36\% \\
+		%\hline$\times$ & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 50.17\% \\
+		%\hline$\times$ & $\times$ & \checkmark & \checkmark & \checkmark & $\times$ & 49.45\% \\
+	%	\hline$\times$ & $\times$ & \checkmark & \checkmark & $\times$ & \checkmark & 88.46\% \\
+		%\hline$\times$ & $\times$ & \checkmark & $\times$ & \checkmark & \checkmark & 51.83\% \\
+		%\hline$\times$ & $\times$ & $\times$ & \checkmark & \checkmark & \checkmark & 50.90\% \\
 		\hline\checkmark & \checkmark & \checkmark & \checkmark & $\times$ & $\times$ & 91.86\% \\
-		\hline\checkmark & \checkmark & \checkmark & $\times$ & \checkmark & $\times$ & 49.30\% \\
-		\hline\checkmark & \checkmark & \checkmark & $\times$ & $\times$ & \checkmark & 81.47\% \\
-		\hline\checkmark & \checkmark & $\times$ & \checkmark & \checkmark & $\times$ & 49.64\% \\
-		\hline\checkmark & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 85.54\% \\
-		\hline\checkmark & \checkmark & $\times$ & $\times$ & \checkmark & \checkmark & 51.12\% \\
-		\hline\checkmark & $\times$ & \checkmark & \checkmark & \checkmark & $\times$ & 49.76\% \\
-		\hline\checkmark & $\times$ & \checkmark & \checkmark & $\times$ & \checkmark & 83.67\% \\
-		\hline\checkmark & $\times$ & \checkmark & $\times$ & \checkmark & \checkmark & 50.40\% \\
-		\hline\checkmark & $\times$ & $\times$ & \checkmark & \checkmark & \checkmark & 50.46\% \\
-		\hline$\times$ & \checkmark & \checkmark & \checkmark & \checkmark & $\times$ & 50.33\% \\
-		\hline$\times$ & \checkmark & \checkmark & \checkmark & $\times$ & \checkmark & 87.11\% \\
-		\hline$\times$ & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark & 51.16\% \\
-		\hline$\times$ & \checkmark & $\times$ & \checkmark & \checkmark & \checkmark & 51.54\% \\
-		\hline$\times$ & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark & 51.18\% \\
-		\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & $\times$ & 49.20\% \\
-		\hline\checkmark & \checkmark & \checkmark & \checkmark & $\times$ & \checkmark & 80.33\% \\
-		\hline\checkmark & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark & 49.41\% \\
-		\hline\checkmark & \checkmark & $\times$ & \checkmark & \checkmark & \checkmark & 50.08\% \\
-		\hline\checkmark & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark & 51.12\% \\
-		\hline$\times$ & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 51.92\% \\
-		\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 50.93\% \\
+		%\hline\checkmark & \checkmark & \checkmark & $\times$ & \checkmark & $\times$ & 49.30\% \\
+	%	\hline\checkmark & \checkmark & \checkmark & $\times$ & $\times$ & \checkmark & 81.47\% \\
+		%\hline\checkmark & \checkmark & $\times$ & \checkmark & \checkmark & $\times$ & 49.64\% \\
+	%	\hline\checkmark & \checkmark & $\times$ & \checkmark & $\times$ & \checkmark & 85.54\% \\
+	%	\hline\checkmark & \checkmark & $\times$ & $\times$ & \checkmark & \checkmark & 51.12\% \\
+	%	\hline\checkmark & $\times$ & \checkmark & \checkmark & \checkmark & $\times$ & 49.76\% \\
+	%	\hline\checkmark & $\times$ & \checkmark & \checkmark & $\times$ & \checkmark & 83.67\% \\
+	%	\hline\checkmark & $\times$ & \checkmark & $\times$ & \checkmark & \checkmark & 50.40\% \\
+	%	\hline\checkmark & $\times$ & $\times$ & \checkmark & \checkmark & \checkmark & 50.46\% \\
+	%	\hline$\times$ & \checkmark & \checkmark & \checkmark & \checkmark & $\times$ & 50.33\% \\
+	%	\hline$\times$ & \checkmark & \checkmark & \checkmark & $\times$ & \checkmark & 87.11\% \\
+	%	\hline$\times$ & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark & 51.16\% \\
+	%	\hline$\times$ & \checkmark & $\times$ & \checkmark & \checkmark & \checkmark & 51.54\% \\
+	%	\hline$\times$ & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark & 51.18\% \\
+	%	\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & $\times$ & 49.20\% \\
+	%	\hline\checkmark & \checkmark & \checkmark & \checkmark & $\times$ & \checkmark & 80.33\% \\
+	%	\hline\checkmark & \checkmark & \checkmark & $\times$ & \checkmark & \checkmark & 49.41\% \\
+	%	\hline\checkmark & \checkmark & $\times$ & \checkmark & \checkmark & \checkmark & 50.08\% \\
+	%	\hline\checkmark & $\times$ & \checkmark & \checkmark & \checkmark & \checkmark & 51.12\% \\
+	%	\hline$\times$ & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 51.92\% \\
+	%	\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 50.93\% \\
 		\hline
 	\end{tabular}
 \end{table*}
 We observe from Table.\ref{table_iat_group}, Table.\ref{table_riat_group}, Table.\ref{table_flow_group} and Table.\ref{table_pkt_size_group} that accuracy is not very good when we consider all the attributes of flow in the classification. When subset of attributes in a group is considered then the accuracy is better than when all attributes in the group are considered. From Table.\ref{table_iat_group}, Table.\ref{table_riat_group} accuracy is very low, this group doesn't make much difference in the accuracy when considered in the classification. From Table.\ref{table_flow_group} and Table.\ref{table_pkt_size_group} we observe accuracy when considering all the attributes is not as good as when we consider subset of them. Table.\ref{table_pkt_size_group} we observe combination of \emph{Avg Pkt Size} and \emph{Std Div Pkt Size} gives the best accuracy of the group, similarly combination of \emph{Min Pkt Size}, \emph{Max Pkt Size} and \emph{Avg Pkt Size} gives second best accuracy of the group. Similarly from Table.\ref{table_flow_group} combination of \emph{Total Pkt Size}, \emph{Payload Size} and also combination of \emph{Payload size}, \emph{Number of Packets in the flow} gives better accuracy in the group. 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=7.16in]{selected_total_attr_adaboost}
-	% where an .eps filename suffix will be assumed under latex, 
+	\includegraphics[width=1\columnwidth]{selected_total_attr_adaboost}
+	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
 	\caption{Percentage of Training data v/s Accuracy for Adaboost}
 	\label{adaboost_selected_total}
-\end{figure*}
+\end{figure}
 From fig.\ref{adaboost_selected_total}, we observe with only subset (7 out 18 attributes) is giving almost same accuracy(at some points even more), as when we consider total 18 attributes with Adaboost (Supervised) Algorithm\cite{}. Extra attributes is not increasing accuracy at all. With less attributes we have faster classifier. From fig.\ref{fig_k_means_all} we observe selection of subset of attributes increases accuracy dramatically. 
 
 \section{Multiple Cluster Models}
+\label{sec:multi_cluster}
 \subsection{Population Fraction}
 In this paper, we introduced new term called population fraction, which stands for percentage of dominant application (application with most number of flows in the cluster in consideration.) flows to total flows in a cluster
 \begin{equation}
@@ -728,6 +803,7 @@ We use results from four models in determining the final classified result of th
 \end{itemize}
 
 \section{Evaluation}
+\label{sec:eval}
 \subsection{Datasets}
 Data had been collected with full payload in early-2014. It has been gathered on various interfaces 1) Wired 2) WIFI 3) 3G and LTE. Data had been collected for individual application in isolation, by generating requests intentionally and capturing bidirectional data.  Considered five tuples (i.e., Source IP, destination IP, source port, destination port and protocol). Used TCP flags to mark the start and end of flow(flow started before the capture, or flows terminating after the capture are not considered in construction of flows). 
 
@@ -747,48 +823,48 @@ During training phase we label clusters in each model(we have 4 of them) based o
  Where $TP$ stands for True positive, meaning correctly identified flow during testing. Total flows are the total number of flows in the testing set.
 
 \subsection{Results}
-\begin{figure*}[!t]
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=7.16in]{adaboost_all_attr_plot.png}
-	% where an .eps filename suffix will be assumed under latex, 
+	\includegraphics[width=1\columnwidth]{adaboost_all_attr_plot.png}
+	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Percent of training data v/s Accuracy for Adaboost with Groups of Attributes}
+	\caption{Percent of training data v/s Accuracy for Adaboost with Groups of Attributes.Plotting Adaboost with each group of attributes.}
 	\label{fig:adaboost_attributes}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=7.16in]{naive_bayes_all_attr_plot.png}
-	% where an .eps filename suffix will be assumed under latex, 
+	\includegraphics[width=1\columnwidth]{naive_bayes_all_attr_plot.png}
+	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Percent of training data v/s Accuracy for Naive Bayes with Groups of Attributes}
+	\caption{\% of training data v/s Accuracy for Naive Bayes with Groups of Attributes. Plotting Naive Bayes with each group of attributes.}
 	\label{fig:naive_attributes}
-\end{figure*}
+\end{figure}
 From fig.\ref{fig:adaboost_attributes} we notice classification with highest accuracy at almost all the ratios of training set is observed for Adaboost. Accuracy for Naive Bayes\cite{} from fig.\ref{fig:naive_attributes} is very low when compared with Adaboost, it is not very effective in classifying the protocols.
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=7.16in]{hypothesis_updated}
-	% where an .eps filename suffix will be assumed under latex, 
+	\includegraphics[width=1\columnwidth]{hypothesis_updated}
+	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Percent of training data v/s Accuracy. Comparison of various strategies }
+	\caption{\# Clusters v/s Accuracy of various strategies }
 	\label{fig:hypo_updated}
-\end{figure*}
+\end{figure}
 From fig.\ref{fig:hypo_updated}, it can noticed that accuracies are very high for \emph{Quorum}, \emph{Greatest} and \emph{Unanimous Greatest} strategies.
 
 We chose \emph{Unanimous Greatest} for further study. Results for proposed classification technique, Supervised(Adaboost) and K-Means are used for comparison.
-\begin{figure*}[!t]
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=7.16in]{super_hypo_accuracy_percent_training}
-	% where an .eps filename suffix will be assumed under latex, 
+	\includegraphics[width=1\columnwidth]{super_hypo_accuracy_percent_training}
+	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
 	\caption{Percent of training data v/s Accuracy Comparing all the existing and proposed technique}
 	\label{fig:super_hypo}
-\end{figure*}
+\end{figure}
 From fig.\ref{fig:super_hypo} we notice that the accuracy is higher than traditional K-Means clustering algorithm at almost all the ratios of the training set. Proposed technique accuracy is comparable to that of the supervised(Adaboost) technique, at times it is higher than supervised too.
 
 % An example of a floating figure using the graphicx package.
@@ -867,6 +943,7 @@ From fig.\ref{fig:super_hypo} we notice that the accuracy is higher than traditi
 
 
 \section{Conclusion}
+\label{sec:conc}
 By considering all the attributes of flow in classifying the application doesn't give better results. Selected attributes with combinations gives better accuracy. Accuracy doesn't continually increases along with number of clusters, as we get better accuracy when we are around 40 clusters. 
 
 Considering IAT and RIAT for classification gives us the least accuracy when compared with other attributes of the flow. Even considering all attributes of packet size and flow also doesn't give better accuracy. 
@@ -879,8 +956,11 @@ Population fraction will be very good parameter in classification of flow using 
 
 % use section* for acknowledgement
 \section*{Acknowledgment}
-acknowledging Sysmate.
-
+This work was in part supported by the IT R\&D program of MOTIE/KEIT
+[10041548,
+``240Gbps realtime automatic signature generation
+system for application traffic classification supporting over 95\%
+completeness and accuracy'']
 
 
 

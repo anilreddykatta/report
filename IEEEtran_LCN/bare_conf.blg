@@ -14,6 +14,7 @@ A bad cross reference---entry "conf/IEEEcit/YeXWP09"
 refers to entry "conf/IEEEcit/2009-2", which doesn't exist
 A bad cross reference---entry "DBLP:conf/noms/ParkWKH08"
 refers to entry "DBLP:conf/noms/2008", which doesn't exist
+Warning--I didn't find a database entry for ""
 Warning--I didn't find a database entry for "DBLP:conf/noms/2008"
 Warning--I didn't find a database entry for "conf/IEEEcit/2009-2"
 Warning--I didn't find a database entry for "DBLP:conf/iwcmc/2012"
@@ -22,6 +23,10 @@ Warning--I didn't find a database entry for "DBLP:conf/infocom/2012"
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 ** Sorting version - not for normal IEEE work.
+Name 1 in "Justin Levandoski, Ethan Sommer, and Matthew Strait, with support from Sebastian Celis, Andy Exley and Lillie Kittredge" has a comma at the end for entry L7:2007:misc
+while executing---line 2589 of file IEEEtranS.bst
+Name 1 in "Justin Levandoski, Ethan Sommer, and Matthew Strait, with support from Sebastian Celis, Andy Exley and Lillie Kittredge" has a comma at the end for entry L7:2007:misc
+while executing---line 2601 of file IEEEtranS.bst
 
 Done.
-(There were 5 error messages)
+(There were 7 error messages)

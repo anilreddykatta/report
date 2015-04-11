@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.11)  11 APR 2015 15:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.11)  11 APR 2015 18:42
 entering extended mode
 **bare_conf.tex
 (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.tex
@@ -560,6 +560,13 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip57
 \backup@length=\skip58
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip59
+\bibsep=\skip60
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count138
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
@@ -590,7 +597,7 @@ footnotesize {#1.}~~ }\parbox [t]{\hsize }{\normalfont \footnotesize \noindent
 \unhbox \@tempboxa #2}\else \ifCLASSOPTIONconference \hbox to\hsize {\normalfon
 t \footnotesize \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\normalfont 
 \footnotesize \box \@tempboxa \hfil }\fi \fi \fi .
-\c@ContinuedFloat=\count138
+\c@ContinuedFloat=\count139
 Package caption Info: floatflt package is loaded.
 Package caption Info: wrapfig package is loaded.
 ) (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux)
@@ -609,16 +616,16 @@ LaTeX Font Info:    ... okay on input line 370.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count139
+\scratchcounter=\count140
 \scratchdimen=\dimen193
 \scratchbox=\box45
-\nofMPsegments=\count140
-\nofMParguments=\count141
+\nofMPsegments=\count141
+\nofMParguments=\count142
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count142
+\MPscratchCnt=\count143
 \MPscratchDim=\dimen194
-\MPnumerator=\count143
-\makeMPintoPDFobject=\count144
+\MPnumerator=\count144
+\makeMPintoPDFobject=\count145
 \everyMPtoPDFconversion=\toks34
 ) ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
@@ -634,73 +641,77 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-<early_application_result.PNG, id=11, 589.0005pt x 444.4605pt>
-File: early_application_result.PNG Graphic file (type png)
-
-<use early_application_result.PNG>
-Package pdftex.def Info: early_application_result.PNG used on input line 543.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
-
-
-LaTeX Warning: Reference `fig:early_app_identification' on page 2 undefined on 
-input line 552.
-
-[2 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/early_application_r
-esult.PNG>] <k_means_selected_all.PNG, id=21, 589.0005pt x 444.4605pt>
+] <k_means_selected_all.PNG, id=11, 589.0005pt x 444.4605pt>
 File: k_means_selected_all.PNG Graphic file (type png)
 
 <use k_means_selected_all.PNG>
-Package pdftex.def Info: k_means_selected_all.PNG used on input line 556.
+Package pdftex.def Info: k_means_selected_all.PNG used on input line 544.
 (pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-<selected_total_attr_adaboost.PNG, id=22, 589.0005pt x 444.4605pt>
-File: selected_total_attr_adaboost.PNG Graphic file (type png)
+<early_application_result.PNG, id=13, 589.0005pt x 444.4605pt>
+File: early_application_result.PNG Graphic file (type png)
 
-<use selected_total_attr_adaboost.PNG>
-Package pdftex.def Info: selected_total_attr_adaboost.PNG used on input line 75
-8.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
- [3 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/k_means_selected_a
-ll.PNG>]
-Underfull \vbox (badness 4454) has occurred while \output is active []
-
- [4 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/selected_total_att
-r_adaboost.PNG>] <adaboost_all_attr_plot.png, id=37, 589.0005pt x 444.4605pt>
-File: adaboost_all_attr_plot.png Graphic file (type png)
-
-<use adaboost_all_attr_plot.png>
-Package pdftex.def Info: adaboost_all_attr_plot.png used on input line 828.
+<use early_application_result.PNG>
+Package pdftex.def Info: early_application_result.PNG used on input line 554.
 (pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-<naive_bayes_all_attr_plot.png, id=38, 589.0005pt x 444.4605pt>
+Overfull \hbox (2.25345pt too wide) in paragraph at lines 603--619
+[][]
+ []
+
+[2 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/k_means_selected_al
+l.PNG>]
+Underfull \vbox (badness 6893) has occurred while \output is active []
+
+
+Overfull \hbox (12.26451pt too wide) in paragraph at lines 665--732
+[][] 
+ []
+
+[3 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/early_application_r
+esult.PNG>] <naive_bayes_all_attr_plot.png, id=30, 589.0005pt x 444.4605pt>
 File: naive_bayes_all_attr_plot.png Graphic file (type png)
 
 <use naive_bayes_all_attr_plot.png>
-Package pdftex.def Info: naive_bayes_all_attr_plot.png used on input line 838.
+Package pdftex.def Info: naive_bayes_all_attr_plot.png used on input line 822.
 (pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-<hypothesis_updated.PNG, id=39, 589.0005pt x 444.4605pt>
+<adaboost_all_attr_plot.png, id=31, 589.0005pt x 444.4605pt>
+File: adaboost_all_attr_plot.png Graphic file (type png)
+
+<use adaboost_all_attr_plot.png>
+Package pdftex.def Info: adaboost_all_attr_plot.png used on input line 831.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+ [4 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/naive_bayes_all_at
+tr_plot.png> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/adaboost_
+all_attr_plot.png>]
+<selected_total_attr_adaboost.PNG, id=37, 589.0005pt x 444.4605pt>
+File: selected_total_attr_adaboost.PNG Graphic file (type png)
+
+<use selected_total_attr_adaboost.PNG>
+Package pdftex.def Info: selected_total_attr_adaboost.PNG used on input line 86
+2.
+(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+ [5 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/selected_total_att
+r_adaboost.PNG>]
+<hypothesis_updated.PNG, id=42, 589.0005pt x 444.4605pt>
 File: hypothesis_updated.PNG Graphic file (type png)
 
 <use hypothesis_updated.PNG>
-Package pdftex.def Info: hypothesis_updated.PNG used on input line 849.
+Package pdftex.def Info: hypothesis_updated.PNG used on input line 942.
 (pdftex.def)             Requested size: 252.0pt x 190.15804pt.
- [5 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/adaboost_all_attr_
-plot.png>]
-<super_hypo_accuracy_percent_training.PNG, id=44, 589.0005pt x 444.4605pt>
+
+<super_hypo_accuracy_percent_training.PNG, id=43, 589.0005pt x 444.4605pt>
 File: super_hypo_accuracy_percent_training.PNG Graphic file (type png)
 
 <use super_hypo_accuracy_percent_training.PNG>
 Package pdftex.def Info: super_hypo_accuracy_percent_training.PNG used on input
- line 861.
+ line 954.
 (pdftex.def)             Requested size: 252.0pt x 190.15804pt.
-
-(C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.bbl [6 <C:/U
-sers/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/naive_bayes_all_attr_plot.p
-ng> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/hypothesis_updated
+ [6 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/hypothesis_updated
 .PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/super_hypo_accur
-acy_percent_training.PNG>])
+acy_percent_training.PNG>]
+(C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -712,38 +723,31 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7
-
-] (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[7] (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 13317 strings out of 493921
- 267084 string characters out of 3144863
- 345596 words of memory out of 3000000
- 16364 multiletter control sequences out of 15000+200000
- 39736 words of font info for 73 fonts, out of 3000000 for 9000
+ 13677 strings out of 493921
+ 271752 string characters out of 3144863
+ 353307 words of memory out of 3000000
+ 16721 multiletter control sequences out of 15000+200000
+ 38600 words of font info for 72 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 48i,14n,54p,1264b,571s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
-urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
-utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb
->
-Output written on bare_conf.pdf (7 pages, 547694 bytes).
+ 48i,13n,54p,1242b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C
+:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/time
+s/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.p
+fb>
+Output written on bare_conf.pdf (7 pages, 517102 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
+ 89 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

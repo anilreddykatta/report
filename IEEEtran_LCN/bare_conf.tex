@@ -20,7 +20,7 @@
 %% Legal Notice:
 %% This code is offered as-is without any warranty either expressed or
 %% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% FITNESS FOR A PARTICULAR PURPOSE!
 %% User assumes all risk.
 %% In no event shall IEEE or any contributor to this code be liable for
 %% any damages or losses, including, but not limited to, incidental,
@@ -118,7 +118,7 @@
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
-
+\usepackage[numbers]{natbib}
 % *** CITATION PACKAGES ***
 %
 %\usepackage{cite}
@@ -165,7 +165,7 @@
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
 % installed on most LaTeX systems. The latest version and documentation can
-% be obtained at: 
+% be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/required/graphics/
 % Another good source of documentation is "Using Imported Graphics in
 % LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
@@ -290,7 +290,7 @@
 % IEEEtran.cls handling of captions and this will result in nonIEEE style
 % figure/table captions. To prevent this problem, be sure and preload
 % caption.sty with its "caption=false" package option. This is will preserve
-% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later
 % (recommended due to many improvements over 1.2) of subfig.sty supports
 % the caption=false option directly:
 %\usepackage[caption=false,font=footnotesize]{subfig}
@@ -397,10 +397,10 @@
 
 % for over three affiliations, or if they all won't fit within the width
 % of the page, use this alternative format:
-% 
+%
 %\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
 %Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3}, 
+%James Kirk\IEEEauthorrefmark{3},
 %Montgomery Scott\IEEEauthorrefmark{3} and
 %Eldon Tyrell\IEEEauthorrefmark{4}}
 %\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
@@ -462,14 +462,14 @@ quality of service, network usage statistics, resource provisioning, and securit
 Earlier, network protocols/applications were identified simply based on TCP/UDP port numbers.
 %, but the traditional identification technique is no longer reliable since many of existing and newly emerging network applications allow dynamic port selection without relying on standard port numbers~\cite{Ohzahata:2005, BitTorrentProto}.
 However, the traditional technique based on port-numbers are proved to be ineffective where accuracy is less than 70\%~\cite{ACAS} since network applications using random port numbers or non-standard port numbers are increasing day-by-day and also usage of tunneling makes identification of applications more difficult just based on port numbers.
-Due to this reason, a substantial body of research has been conducted to replace or complement the port-based identification. 
+Due to this reason, a substantial body of research has been conducted to replace or complement the port-based identification.
 
 One approach to overcome the limitation of the port-based identification is to inspect the packet payload information with template signature sets~\cite{conf/IEEEcit/YeXWP09,DBLP:conf/noms/ParkWKH08} or machine learning techniques~\cite{ACAS}.
 While highly accurate,  drawbacks of the deep packet inspection-based approach include encrypted traffic transformed with cryptographic keys and privacy concerns as many countries do not permit the extraction of full payload information from packets with increasing privacy requirements.
 
 The limitations of the traditional port-based identification and the payload inspection-based classification suggested to utilize  transport layer characteristics of the application as the differentiator. From previously proposed techniques~\cite{}, we can see the combination of transport layer characteristics with machine learning techniques would be an effective alternative for network traffic classification. %accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
 Several techniques were proposed based on supervised learning~\cite{}, while some other techniques utilized unsupervised or semi-supervised clustering techniques~\cite{}, reporting promising  accuracy for network traffic classification.
-However, what we actually observed from previously proposed network traffic classification techniques with our own data set recently collected are somewhat unacceptable results. In particular, one important observation is that simply combining flow attributes for classification leads to unexpectedly poor accuracy in classification (less than xx\%), which motivates us to thoroughly examine the impact of flow attributes in this work.\footnote{A (network) flow is defined as a set of packets for a single session of communication with the five tuples of source IP address, destination IP address, source port number, destination port number, and protocol type.} 
+However, what we actually observed from previously proposed network traffic classification techniques with our own data set recently collected are somewhat unacceptable results. In particular, one important observation is that simply combining flow attributes for classification leads to unexpectedly poor accuracy in classification (less than xx\%), which motivates us to thoroughly examine the impact of flow attributes in this work.\footnote{A (network) flow is defined as a set of packets for a single session of communication with the five tuples of source IP address, destination IP address, source port number, destination port number, and protocol type.}
 
 %An alternative approach is to utilize machine learning-based classification techniques with flow statistics, such as flow size, flow duration, packet size, packet inter-arrival time, and so forth, without having privacy concerns~\cite{}.
 
@@ -482,7 +482,7 @@ From our preliminary experiments, we observed that some combinations of attribut
 Moreover, simply applying a subset of attributes selected based on the evaluation to supervised techniques significantly improves performance compared to using the entire attributes without selection.
 With the initial observations, we developed a new semi-supervised learning technique based on the attribute groups.
 A key challenge for this approach is how to use multiple attribute groups to make a single classification decision.
-To address this, we establish independent cluster models based on individual attribute groups and incorporate the results collected from multiple cluster models. 
+To address this, we establish independent cluster models based on individual attribute groups and incorporate the results collected from multiple cluster models.
 Although it is known that clustering techniques generally work poorly compared to supervised learning techniques~\cite{DBLP:conf/infocom/XieIKFN12}, we will present that the proposed technique using multiple cluster models yield comparable classification accuracy.
 
 The key contributions of this paper can be summarized as follows:
@@ -490,7 +490,7 @@ The key contributions of this paper can be summarized as follows:
 \begin{itemize}
 	\item We evaluate the significance of flow attributes to classification accuracy with a notion of attribute group.
 	We used 18 flow attributes in total and four groups are formed, which are flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group.
-	\item From the evaluation results with the attribute groups, we examine classification accuracy with the entire attributes and with the selected ones using supervised learning methods, to ensure  validity of the selection. 
+	\item From the evaluation results with the attribute groups, we examine classification accuracy with the entire attributes and with the selected ones using supervised learning methods, to ensure  validity of the selection.
 	\item We present a new clustering technique for network traffic classification that utilizes multiple cluster models developed from the attribute groups. A set of heuristic algorithms are also presented to incorporate multiple cluster models.
 	\item We also present experimental results for evaluating the proposed traffic classification technique. Experiments for sensitivity study are also conducted to see the impact of configurable parameters.
 \end{itemize}
@@ -501,7 +501,7 @@ In Section~\ref{sec:grouping}, we examine the significance of attribute groups t
 We then present the new clustering technique incorporating multiple cluster models in Section~\ref{sec:multi_cluster} and evaluation results are presented in Section~\ref{sec:eval}.
 Finally we conclude our presentation with a summary and future direction in Section~\ref{sec:conc}.
 
-\section{Related Work and Motivation}
+\section{Related Work}
 \label{sec:related}
 %\subsection{Related Study}
 %Existing techniques based on port-numbers are proved to be very ineffective where accuracy is less than 70 \cite{}, as number of applications using random port numbers or non-standard port numbers are increasing day-by-day and also usage of tunneling makes identification of application more difficult just based on port numbers.
@@ -518,19 +518,17 @@ The work can broadly be divided into the following three categories:
 	Labeling information of the training data is not available at the time of training. We use various clustering algorithms for the classification of unlabeled data\cite{}.
 	\item \emph{Supervised}~\cite{}:
 	We provide the labels for the flows when we train the model and then use this model to test each incoming flow whether it belongs to any of the application which is provided at the time of training\cite{}.
-	\item \emph{Semi-supervised}~\cite{}: 
+	\item \emph{Semi-supervised}~\cite{}:
 	We provide partial labeling information at the time of training and we use clustering algorithms to cluster the training data. We use the partially available labeling information to label each cluster. Heuristics have been proposed on how to label the cluster from partial training information\cite{}
 \end{itemize}
 
 %We extensively ran existing techniques\cite{} against our dataset. We ran supervised (Adaboost, Naive Bayes), unsupervised (K-Means using all attributes of the flow statistics) and Early Application Identification (K-Means using only Average Packet Size as the attribute for the machine learning algorithm).
 
-\textbf{ACAS}\cite{ACAS}: In paper\cite{ACAS}, they explored the problem of network traffic classification by \emph{automatically developing signatures} for various network based applications. ACAS encodes initial\textit{n-bytes}of the payload into space and uses supervised machine learning algorithm as the classification algorithm. They did experiments with various settings of the initial \textit{n-bytes} and observed accuracies more than $99\%$ for both settings of the initial bytes. 
-We observe this technique is effective in identifying applications with very high accuracy with our data set ($\approx$ 99\%). Drawback of this technique is it requires completely labeled data. Which means we should know prior to the start classification it should know all the applications that classifier may encounter in future (which is not a feasible solution). It also 
+\textbf{ACAS}\cite{ACAS}: ACAS encodes initial \textit{n-bytes} of the payload into space and uses supervised machine learning algorithm as the classification algorithm. We observe this technique is effective in identifying applications with very high accuracy with our data set ($\approx$ 99\%). Drawback of this technique is it requires completely labeled data. Which means we should know prior to the start classification it should know all the applications that classifier may encounter in future (which is not a feasible solution). It also
 As mentioned, however, it requires the access to the payload, which could be limited by laws due to privacy concerns. In addition, encryption plays an important role in classification, which may significantly lower the accuracy.
 
-\textbf{K-Means classification technique}\cite{Erman:2006:TCU:1162678.1162679}. 
-%We ran K-Means classification technique, where we use all the available 18 attributes of flow statistics for the classification. We ran experiments to study the effect of the number of clusters\cite{}. 
-Main idea of the paper\cite{Erman:2006:TCU:1162678.1162679} is using of K-Means and DBSCAN clustering algorithms which were not used earlier for network traffic classification.  They identified DBSCAN algorithm is the only algorithm which labeled traffic as noise.The time of building the models is very low for K-Means algorithm. They claim K-Means accuracy on an average is around $84\%$.
+\textbf{K-Means classification technique}\cite{Erman:2006:TCU:1162678.1162679}.
+%We ran K-Means classification technique, where we use all the available 18 attributes of flow statistics for the classification. We ran experiments to study the effect of the number of clusters\cite{}.
 We ran the K-Means classification technique across by varying the number of clusters from 10 to 140, and Figure~\ref{fig_k_means_all} show the result.
 As can be seen from the figure, classification performance is largely not acceptable with quite less than 70\% accuracy.
 %In fig.\ref{fig_k_means_all} K-Means all Attrs is the accuracy of the existing technique \cite{} and K-Means Selected is the accuracy when we consider only subset of total attributes, based on the selection strategy which we suggested later in the paper. We observe the accuracy of the existing technique is low in comparison with the accuracy of the clustering technique when we consider only subset of the attributes.
@@ -538,18 +536,8 @@ As can be seen from the figure, classification performance is largely not accept
 
 \textbf{Early Application Identification}.\cite{Bernaille:2006:EAI:1368436.1368445}
 %We ran Early Application Identification\cite{} against our dataset. Instead of considering \emph{Average Packet Size} for first 4 packets as suggested in the paper\cite{}, we considered whole packets \emph{Average Packet Size} of the flow. It can observed from fig.\ref{fig:early_app_identification} that the accuracy increases slowly with increase in the percent of the training set.
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=1\columnwidth]{early_application_result}
-	% where an .eps filename suffix will be assumed under latex,
-	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-	% via \DeclareGraphicsExtensions.
-	\caption{\% of training data v/s Accuracy with only average packet size as attribute. We have considered Average Packet Size as the only attribute for K-Means algorithm. We observe that accuracy reaches around 90\% when we have around 95\% of training data}
-	\label{early_app_identification}
-\end{figure}
-In the paper\cite{Bernaille:2006:EAI:1368436.1368445}, they described new technique by which identification of the application can be achieved at the earliest. They discussed the usage of only first \textit{4 packets} in the classification, by which we can identify the application as soon as possible. They propose that by using only Average Packet size of the flow is enough to get desired classification accuracy.They claim the accuracy of 98\% can be achieved by using only Average Packet Size  as the attribute for machine learning algorithms.
 We also evaluated this technique. Rather than considering only the first 4 packets in a flow as suggested in the paper, we considered the whole packets to see the maximum performance.
-Although this technique is based on clustering as the above technique and uses only the average packet size attribute, it yielded quite enhanced results as shown in Figure~\ref{fig:early_app_identification} across diverse ratios between training data set and testing data set. 
+Although this technique is based on clustering as the above technique and uses only the average packet size attribute, it yielded quite enhanced results as shown in Figure~\ref{fig:early_app_identification} across diverse ratios between training data set and testing data set.
 
 \begin{figure}[!t]
 	\centering
@@ -557,43 +545,80 @@ Although this technique is based on clustering as the above technique and uses o
 	% where an .eps filename suffix will be assumed under latex,
 	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
 	% via \DeclareGraphicsExtensions.
-	\caption{Number of clusters v/s Accuracy for K-Means algorithm with All and Selected attributes}
+	\caption{Number of clusters v/s Accuracy for K-Means algorithm with All}
 	\label{fig_k_means_all}
+\end{figure}
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=1\columnwidth]{early_application_result}
+	% where an .eps filename suffix will be assumed under latex,
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	\caption{Percentage of Training Data v/s Accuracy for Early Application Identification}
+	\label{fig:early_app_identification}
 \end{figure}
 
 \section{Grouping of Attributes}
 \label{sec:grouping}
-Total attributes considered for the study are 18. 
+
+In this section, we present the impact of flow statistics attributes to classification accuracy based on grouping of attributes.
+We first describe the flow attributes used in this study and attribute groups, and then discuss classification accuracy for individual groups.
+
+From the network traffic data set, totally 18 flow attributes are considered, as summarized in Table~\ref{tab:attrs}.
+The information about the data set used in this study will be described in Section~\ref{sec:eval} in detail.
+
 \renewcommand{\arraystretch}{1.5}
+%\begin{table*}
+%	\caption{Attributes used in out studies}
+%	\label{table_attributes_description}
+%	\begin{tabular}{|c|L{2.8in}|L{2.8in}|}
+%		\hline Name & Description & Related Attributes \\
+%		\hline IAT  & Inter Arrival Time, time difference between $i^{th}$ and $i+1^{th}$ packets & Standard Deviation IAT\newline Minimum IAT\newline Maximum IAT\newline Average IAT \\
+%		\hline RIAT & Relative Inter Arrival Time, IAT of the the packet divided my mimimum of IAT & Average RIAT\newline Standard Deviation of RIAT\newline Minimum RIAT\newline Maximum of RIAT \\
+%		\hline Packet Size & Size of the packet in the flow including headers & Average Packet Size\newline Standard Deviation of Packet Size\newline Minimum Packet Size\newline Maximum Packet Size \\
+%		\hline Flow Duration & Duration of the entire flow from initiation to termination & Flow Duration\\
+%		\hline Total Packet Size & Summation of the packet sizes of all the packets inside the flow & Total Packet Size \\
+%		\hline Number of Packets & Total number of packets inside the flow & Number of Packets \\
+%		\hline Packets per Second & $ \frac{Number of Packets}{Flow Duration} $ & Average Packets Per Second\\
+%		\hline Bytes Per Second & $ \frac{Total Packet Size}{Flow Duration} $ & Average Bytes Per Second \\
+%		\hline Payload Size & $Size_{Paload Size} = Size_{Total} - Size_{header } $ & Payload Size \\
+%		\hline
+%	\end{tabular}
+%	%\begin{tabular}{|c|c|}
+%	%	\hline  Average IAT & Maximum of IAT \\ [2pt]
+%	%	\hline  Minimum of IAT & Stadard Deviation of IAT\\
+%	%	\hline  Average RIAT & Maximum of RIAT\\
+%	%	\hline  Minimum of RIAT& Standard Deviation of RIAT\\
+%	%	\hline  Average Packet Size & Minimum of Packet Size \\
+%	%	\hline  Maximum of Packet Size & Standard Deviation of Packet Size \\
+%	%	\hline  Total Packet Size& Flow Duration\\
+%	%	\hline  Number of Packets & Average Packets/second\\
+%	%	\hline  Average Bytes/second & Payload Size \\
+%	%	\hline
+%%	\end{tabular}
+%\end{table*}
 \begin{table*}
 	\caption{Attributes used in out studies}
-	\label{table_attributes_description}
-	\begin{tabular}{|c|L{2.8in}|L{2.8in}|}
-		\hline Name & Description & Related Attributes \\
-		\hline IAT  & Inter Arrival Time, time difference between $i^{th}$ and $i+1^{th}$ packets & Standard Deviation IAT\newline Minimum IAT\newline Maximum IAT\newline Average IAT \\
-		\hline RIAT & Relative Inter Arrival Time, IAT of the the packet divided my mimimum of IAT & Average RIAT\newline Standard Deviation of RIAT\newline Minimum RIAT\newline Maximum of RIAT \\
-		\hline Packet Size & Size of the packet in the flow including headers & Average Packet Size\newline Standard Deviation of Packet Size\newline Minimum Packet Size\newline Maximum Packet Size \\
-		\hline Flow Duration & Duration of the entire flow from initiation to termination & Flow Duration\\
-		\hline Total Packet Size & Summation of the packet sizes of all the packets inside the flow & Total Packet Size \\
-		\hline Number of Packets & Total number of packets inside the flow & Number of Packets \\
-		\hline Packets per Second & $ \frac{Number of Packets}{Flow Duration} $ & Average Packets Per Second\\
-		\hline Bytes Per Second & $ \frac{Total Packet Size}{Flow Duration} $ & Average Bytes Per Second \\
-		\hline Payload Size & $Size_{Paload Size} = Size_{Total} - Size_{header } $ & Payload Size \\
+	\begin{tabular}{|l|l|}
+%	\begin{tabular}{|p{2cm}|p{6cm}|}
+		\hline Attribute & Description  \\
+		\hline Flow size & Total number of bytes in the flow \\
+		\hline Flow duration & Duration of the  flow from initiation to termination \\
+%		\hline Total packet size & Summation of the packet sizes of all the packets inside the flow \\
+		\hline Number of Packets & Total number of packets inside the flow  \\
+		\hline Number of packets per second & Number of packets / Flow duration \\
+		\hline Number of bytes Per second & Total packet size / Flow duration \\
+		\hline Payload size & the payload size in bytes without network and transport layer headers \\
+		\hline Packet size & min/max packet size and average and standard deviation of packet sizes in the flow  \\
+		\hline Packet inter-arrival time (IAT) & min/max packet inter-arrival time and average and standard deviation of inter-arrival times in the flow  \\
+		\hline Relative IAT (RIAT) & Recomputation of IAT after dividing IAT by round-trip delay:  max RIAT and average and standard deviation of RIATs \\
 		\hline
 	\end{tabular}
-	%\begin{tabular}{|c|c|}
-	%	\hline  Average IAT & Maximum of IAT \\ [2pt]
-	%	\hline  Minimum of IAT & Stadard Deviation of IAT\\ 
-	%	\hline  Average RIAT & Maximum of RIAT\\ 
-	%	\hline  Minimum of RIAT& Standard Deviation of RIAT\\
-	%	\hline  Average Packet Size & Minimum of Packet Size \\  
-	%	\hline  Maximum of Packet Size & Standard Deviation of Packet Size \\ 
-	%	\hline  Total Packet Size& Flow Duration\\
-	%	\hline  Number of Packets & Average Packets/second\\
-	%	\hline  Average Bytes/second & Payload Size \\ 
-	%	\hline 
-%	\end{tabular}
+	\label{tab:attrs}
 \end{table*}
+
+
 %\vspace{5pt}
 %\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
 %	\item \emph{Flow Size}
@@ -602,90 +627,43 @@ Total attributes considered for the study are 18.
 %	Difference between time when last packet of the flow captured and first packet of flow captured
 %	\item \emph{Packet Size and it's variations}
 %	Size of the each packet. We can get \emph{minimum}, \emph{maximum}, \emph{Average} and \emph{Standard deviation} by using all the packets of the flow.
-%	\item \emph{Inter Arrival Time and it's variations} 
+%	\item \emph{Inter Arrival Time and it's variations}
 %	Inter Arrival Time($\tau'$)\cite{} is the time difference between $\tau_{next}$ - $\tau_{current}$.
 %	\item \emph{Relative Inter Arrival Time and it's variations} \cite{}
 %	Relative inter arrival time is defined as
 %	$$\tau'_i = \frac{\tau_i}{\displaystyle \min_{k=1..|f|-1}{\tau_k}}$$
-%	Here, $f$ is a flow with $|f|$ number of packets and $\tau_i$ is the time difference between $i$-th packet and $(i+1)$-th packet in that flow.\cite{} 
+%	Here, $f$ is a flow with $|f|$ number of packets and $\tau_i$ is the time difference between $i$-th packet and $(i+1)$-th packet in that flow.\cite{}
 %\end{itemize}
-\subsection{Preliminary Results}
-Our experiments results for each group of attributes are as following:
-\renewcommand{\arraystretch}{1.5}
-\begin{table}
-	\caption{Accuracy based on IAT group}
-	\label{table_iat_group}
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline Avg IAT & Min IAT & Max IAT & Std Div IAT & Final Accuracy \\
-		\hline \checkmark & $\times$ & $\times$ & $\times$ & 47.29\% \\
-		\hline $\times$ & \checkmark & $\times$ & $\times$ & 49.34\% \\
-		\hline $\times$ & $\times$ & \checkmark & $\times$ & 39.20\% \\
-		\hline $\times$ & $\times$ & $\times$ & \checkmark & 42.82\% \\
-		\hline \checkmark & \checkmark & $\times$ & $\times$ & 45.86\% \\
-		\hline \checkmark & $\times$ & \checkmark & $\times$ & 44.25\% \\
-		\hline \checkmark & $\times$ & $\times$ & \checkmark & 47.78\% \\
-		\hline $\times$ & \checkmark & \checkmark & $\times$ & 39.64\% \\
-		\hline $\times$ & \checkmark & $\times$ & \checkmark & 42.91\% \\
-		\hline $\times$ & $\times$ & \checkmark & \checkmark & 40.54\% \\
-		\hline \checkmark & \checkmark & \checkmark & $\times$ & 45.20\% \\
-		\hline \checkmark & \checkmark & $\times$ & \checkmark & 47.18\% \\
-		\hline \checkmark & $\times$ & \checkmark & \checkmark & 42.70\% \\
-		\hline $\times$ & \checkmark & \checkmark & \checkmark & 40.10\% \\
-		\hline \checkmark & \checkmark & \checkmark & \checkmark & 42.75\% \\
-		\hline 
-	\end{tabular}
-\end{table}
 
-\renewcommand{\arraystretch}{1.5}
-\begin{table}
-	\caption{Accuracy based on RIAT group}
-	\label{table_riat_group}
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline Avg RIAT & Max RIAT& Std Div RIAT & Final Accuracy \\
-		\hline \checkmark & $\times$ & $\times$ & 55.86\% \\
-		\hline $\times$ & \checkmark & $\times$ & 54.08\% \\
-		\hline $\times$ & $\times$ & \checkmark & 53.41\% \\
-		\hline \checkmark & \checkmark & $\times$ & 55.21\% \\
-		\hline \checkmark & $\times$ & \checkmark & 54.28\% \\
-		\hline $\times$ & \checkmark & \checkmark & 55.25\% \\
-		\hline \checkmark & \checkmark & \checkmark & 56.41\% \\
-		\hline 
-	\end{tabular}
-\end{table}
+As discussed in the previous section, using only a single attribute of average packet size works much better than using a greater number of attributes for traffic classification. 
+Thus, it would be good to see the significance of the attributes.
+Since there can exist too many combinations of the attributes, we categorized the attributes into four groups based on their characteristics, as follows:
 
-\renewcommand{\arraystretch}{1.5}
-\begin{table}
-	\caption{Accuracy based on Packet Size group}
-	\label{table_pkt_size_group}
-	\tabcolsep=0.01cm
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline Avg Pkt Size & Min Pkt Size & Max Pkt Size & Std Div Pkt Size & Final Accuracy \\
-		\hline \checkmark & $\times$ & $\times$ & $\times$ & 92.43\% \\
-		\hline $\times$ & \checkmark & $\times$ & $\times$ & 75.95\% \\
-		\hline $\times$ & $\times$ & \checkmark & $\times$ & 92.22\% \\
-		\hline $\times$ & $\times$ & $\times$ & \checkmark & 91.82\% \\
-		\hline \checkmark & \checkmark & $\times$ & $\times$ & 91.46\% \\
-		\hline \checkmark & $\times$ & \checkmark & $\times$ & 92.98\% \\
-		\hline \checkmark & $\times$ & $\times$ & \checkmark & 93.96\% \\
-		\hline $\times$ & \checkmark & \checkmark & $\times$ & 91.46\% \\
-		\hline $\times$ & \checkmark & $\times$ & \checkmark & 92.69\% \\
-		\hline $\times$ & $\times$ & \checkmark & \checkmark & 92.76\% \\
-		\hline \checkmark & \checkmark & \checkmark & $\times$ & 93.98\% \\
-		\hline \checkmark & \checkmark & $\times$ & \checkmark & 93.62\% \\
-		\hline \checkmark & $\times$ & \checkmark & \checkmark & 92.76\% \\
-		\hline $\times$ & \checkmark & \checkmark & \checkmark & 91.73\% \\
-		\hline \checkmark & \checkmark & \checkmark & \checkmark & 93.75\% \\
-		\hline 
-	\end{tabular}
-\end{table}
+\begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
+	\item \emph{Flow group}: Any flow-level attribute belongs to this group, including flow size, flow duration, and so forth.
+	\item \emph{Packet size group}: Attributes related to packet size belong to this group: \emph{minimum}, \emph{maximum}, \emph{average}, and \emph{standard deviation} packet size
+	\item \emph{Inter-Arrival Time (IAT) group}: Attributes from inter-arrival time: \emph{minimum}, \emph{maximum}, \emph{average}, and \emph{standard deviation} inter-arrival time
+\item \emph{Relative Inter-Arrival Time (RIAT) group}: Attributes related to relative inter-arrival time: \emph{maximum}, \emph{average}, and \emph{standard deviation}. Relative inter-arrival time is defined as,
+	$$\tau'_i = \frac{\tau_i}{\displaystyle \min_{k=1..|f|-1}{\tau_k}}$$
+	Here, $f$ is a flow with $|f|$ number of packets and $\tau_i$ is the time difference between $i$-th packet and $(i+1)$-th packet in that flow.
+\end{itemize}
 
-\renewcommand{\arraystretch}{1.0}
-\begin{table*}
-	\caption{Accuracy based on Flow attribute group}
+%\subsection{Preliminary Results}
+%Our experiments results for each group of attributes are as following:
+
+To evaluate the attributes' performance impact to network classification, we applied the clustering technique introduced in the previous section with the individual subsets of attributes for each group. 
+To measure classification accuracy, we used a simple metric of true positive, and thus, accuracy indicates true positive rate in this paper.
+We used our own data set described in the evaluation section in detail (Section~\ref{sec:eval}).
+By default, we used 90\%:10\% for the ratio of the number of training flows to the number of test flows.
+
+%\renewcommand{\arraystretch}{1.0}
+\begin{table}
+	\caption{Accuracy of flow group}
 	\label{table_flow_group}
-	\tabcolsep=0.40cm
-	\begin{tabular}{|c|c|C{0.8in}|c|c|c|c|}
-		\hline Total Pkt Size & Flow Duration & Number of Packets &  Avg Pkts Per Sec & Avg Bytes Per Sec & Payload Size & Accuracy \\
+%	\tabcolsep=0.40cm
+%	\begin{tabular}{|c|c|C{0.8in}|c|c|c|c|}
+	\begin{tabular}{|C{0.35in}|C{0.35in}|C{0.35in}|C{0.35in}|C{0.35in}|C{0.35in}|C{0.35in}|}
+		\hline Flow Size & Flow Duration & Number of Packets &  Avg Pkts Per Sec & Avg Bytes Per Sec & Payload Size & Accuracy \\
 		%\hline\checkmark & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & 89.05\% \\
 		%\hline$\times$ & \checkmark & $\times$ & $\times$ & $\times$ & $\times$ & 40.72\% \\
 		%\hline$\times$ & $\times$ & \checkmark & $\times$ & $\times$ & $\times$ & 59.54\% \\
@@ -751,8 +729,134 @@ Our experiments results for each group of attributes are as following:
 	%	\hline\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & 50.93\% \\
 		\hline
 	\end{tabular}
-\end{table*}
-We observe from Table.\ref{table_iat_group}, Table.\ref{table_riat_group}, Table.\ref{table_flow_group} and Table.\ref{table_pkt_size_group} that accuracy is not very good when we consider all the attributes of flow in the classification. When subset of attributes in a group is considered then the accuracy is better than when all attributes in the group are considered. From Table.\ref{table_iat_group}, Table.\ref{table_riat_group} accuracy is very low, this group doesn't make much difference in the accuracy when considered in the classification. From Table.\ref{table_flow_group} and Table.\ref{table_pkt_size_group} we observe accuracy when considering all the attributes is not as good as when we consider subset of them. Table.\ref{table_pkt_size_group} we observe combination of \emph{Avg Pkt Size} and \emph{Std Div Pkt Size} gives the best accuracy of the group, similarly combination of \emph{Min Pkt Size}, \emph{Max Pkt Size} and \emph{Avg Pkt Size} gives second best accuracy of the group. Similarly from Table.\ref{table_flow_group} combination of \emph{Total Pkt Size}, \emph{Payload Size} and also combination of \emph{Payload size}, \emph{Number of Packets in the flow} gives better accuracy in the group. 
+\end{table}
+
+%\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Accuracy of packet size group}
+	\label{table_pkt_size_group}
+	\tabcolsep=0.01cm
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline Avg Pkt Size & Min Pkt Size & Max Pkt Size & Stddev Pkt Size & Final Accuracy \\
+		\hline \checkmark & $\times$ & $\times$ & $\times$ & 92.43\% \\
+		\hline $\times$ & \checkmark & $\times$ & $\times$ & 75.95\% \\
+		\hline $\times$ & $\times$ & \checkmark & $\times$ & 92.22\% \\
+		\hline $\times$ & $\times$ & $\times$ & \checkmark & 91.82\% \\
+		\hline \checkmark & \checkmark & $\times$ & $\times$ & 91.46\% \\
+		\hline \checkmark & $\times$ & \checkmark & $\times$ & 92.98\% \\
+		\hline \checkmark & $\times$ & $\times$ & \checkmark & 93.96\% \\
+		\hline $\times$ & \checkmark & \checkmark & $\times$ & 91.46\% \\
+		\hline $\times$ & \checkmark & $\times$ & \checkmark & 92.69\% \\
+		\hline $\times$ & $\times$ & \checkmark & \checkmark & 92.76\% \\
+		\hline \checkmark & \checkmark & \checkmark & $\times$ & 93.98\% \\
+		\hline \checkmark & \checkmark & $\times$ & \checkmark & 93.62\% \\
+		\hline \checkmark & $\times$ & \checkmark & \checkmark & 92.76\% \\
+		\hline $\times$ & \checkmark & \checkmark & \checkmark & 91.73\% \\
+		\hline \checkmark & \checkmark & \checkmark & \checkmark & 93.75\% \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+%\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Accuracy of IAT group}
+	\label{table_iat_group}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline Avg IAT & Min IAT & Max IAT & Stddev IAT & Final Accuracy \\
+		\hline \checkmark & $\times$ & $\times$ & $\times$ & 47.29\% \\
+		\hline $\times$ & \checkmark & $\times$ & $\times$ & 49.34\% \\
+		\hline $\times$ & $\times$ & \checkmark & $\times$ & 39.20\% \\
+		\hline $\times$ & $\times$ & $\times$ & \checkmark & 42.82\% \\
+		\hline \checkmark & \checkmark & $\times$ & $\times$ & 45.86\% \\
+		\hline \checkmark & $\times$ & \checkmark & $\times$ & 44.25\% \\
+		\hline \checkmark & $\times$ & $\times$ & \checkmark & 47.78\% \\
+		\hline $\times$ & \checkmark & \checkmark & $\times$ & 39.64\% \\
+		\hline $\times$ & \checkmark & $\times$ & \checkmark & 42.91\% \\
+		\hline $\times$ & $\times$ & \checkmark & \checkmark & 40.54\% \\
+		\hline \checkmark & \checkmark & \checkmark & $\times$ & 45.20\% \\
+		\hline \checkmark & \checkmark & $\times$ & \checkmark & 47.18\% \\
+		\hline \checkmark & $\times$ & \checkmark & \checkmark & 42.70\% \\
+		\hline $\times$ & \checkmark & \checkmark & \checkmark & 40.10\% \\
+		\hline \checkmark & \checkmark & \checkmark & \checkmark & 42.75\% \\
+		\hline
+	\end{tabular}
+\end{table}
+
+%\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Accuracy of RIAT group}
+	\label{table_riat_group}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline Avg RIAT & Max RIAT& Stddev RIAT & Final Accuracy \\
+		\hline \checkmark & $\times$ & $\times$ & 55.86\% \\
+		\hline $\times$ & \checkmark & $\times$ & 54.08\% \\
+		\hline $\times$ & $\times$ & \checkmark & 53.41\% \\
+		\hline \checkmark & \checkmark & $\times$ & 55.21\% \\
+		\hline \checkmark & $\times$ & \checkmark & 54.28\% \\
+		\hline $\times$ & \checkmark & \checkmark & 55.25\% \\
+		\hline \checkmark & \checkmark & \checkmark & 56.41\% \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Table~\ref{table_flow_group} shows accuracy of classification when using a subset of attributes in the flow group.
+In fact, there can exist many number of combinations with the six attributes in the flow group, but we report the top 10 results only to save the space. 
+Surprisingly, we can see very high accuracy up to 94.5\% with only 2--4 attributes in the flow group.
+ 
+We next examined the attributes in the packet size group.
+As shown in Table~\ref{table_pkt_size_group}, any combination of attributes in the packet size group works very good, showing up to 94\% accuracy.
+When using minimum packet size only, it does not work well with 76\% accuracy.
+The results here explain why it worked well only with the attribute of average packet size in \cite{Bernaille:2006:EAI:1368436.1368445}. 
+We observed the combination of \emph{Avg Pkt Size} and \emph{Stddev Pkt Size} gives the best accuracy of the group, and the combination of \emph{Min Pkt Size}, \emph{Max Pkt Size} and \emph{Avg Pkt Size} gives the second best accuracy in this group.
+
+Unlike the flow group and the packet size group, we observed that the attributes related to packet inter-arrival time are not good with clearly low classification accuracy less than 60\%, and hence, less attractive to use them for network traffic classification than the attributes in the flow and packet groups.
+
+%As shown in Table~\ref{table_iat_group} and Table~\ref{table_riat_group}, classification accuracy remained below 60\% with any combination of the attributes in each group of
+%We observe from Table~\ref{table_iat_group}, Table~\ref{table_riat_group}, Table~\ref{table_flow_group} and Table~\ref{table_pkt_size_group} that accuracy is not very good when we consider all the attributes of flow in the classification. When subset of attributes in a group is considered then the accuracy is better than when all attributes in the group are considered. From Table~\ref{table_iat_group}, Table~\ref{table_riat_group} accuracy is very low, this group doesn't make much difference in the accuracy when considered in the classification. From Table~\ref{table_flow_group} and Table~\ref{table_pkt_size_group} we observe accuracy when considering all the attributes is not as good as when we consider subset of them. Table~\ref{table_pkt_size_group} we observe combination of \emph{Avg Pkt Size} and \emph{Stddev Pkt Size} gives the best accuracy of the group, similarly combination of \emph{Min Pkt Size}, \emph{Max Pkt Size} and \emph{Avg Pkt Size} gives second best accuracy of the group. Similarly from Table~\ref{table_flow_group} combination of \emph{Total Pkt Size}, \emph{Payload Size} and also combination of \emph{Payload size}, \emph{Number of Packets in the flow} gives better accuracy in the group.
+
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=1\columnwidth]{naive_bayes_all_attr_plot.png}
+	% where an .eps filename suffix will be assumed under latex,
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	\caption{\% of training data v/s Accuracy for Naive Bayes with Groups of Attributes. Plotting Naive Bayes with each group of attributes.}
+	\label{fig:naive_attributes}
+\end{figure}
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=1\columnwidth]{adaboost_all_attr_plot.png}
+	% where an .eps filename suffix will be assumed under latex,
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	\caption{Percent of training data v/s Accuracy for Adaboost with Groups of Attributes.Plotting Adaboost with each group of attributes.}
+	\label{fig:adaboost_attributes}
+\end{figure}
+
+
+
+We also run supervised learning methods (Adaboost and Naive Bayes) with a subset of the attributes to see their impacts.
+For the experiments with the supervised learning techniques, we considered the following attribute sets:
+
+\begin{itemize}
+    \item \emph{Packet Size} This group comprised of all the packet size related attributes like \emph{average packet Size, minimum packet size, maximum packet size and standard deviation of packet size}.
+    \item \emph{IAT} This group consists of all the attributes related to IAT like \emph{average IAT, minimum IAT, maximum IAT, standard deviation of IAT}
+    \item \emph{Flow Attributes} This group is composed of all flow level attributes like \emph{flow duration, flow size, payload size, average bytes per second, average packets per second, etc}
+    \item \emph{Selected Attributes} This group consists of selected attributes which are resulting in better accuracy than other attributes. Consists of \emph{average packet size, minimum packet size, maximum packet size, standard deviation of packet size, total packet size, payload size and number of packets}. 
+    \item \emph{RIAT} This group composed of all the attributes related to relative IAT like \emph{average RIAT, minimum RIAT, maximum RIAT and standard deviation of RIAT}
+\end{itemize}
+
+Figure~\ref{fig:naive_attributes} and Figure~\ref{fig:adaboost_attributes} show the classification results with Naive Bayes and Adaboost~\cite{freund1995desicion}, respectively.
+We observed Naive Bayes works very poorly showing less than 60\% accuracy.
+Unlike this, Adaboost showed over 85\% accuracy for some combinations of attributes with 10\% or more flows in the training data set (i.e., the ratio of training and testing data sets $\ge$ 10\%).
+For Adaboost, we observed that the two groups of attributes showed outstanding performance compared to the others: packet size and selected attributes.
+
+
+%From fig.\ref{fig:adaboost_attributes} we notice classification with highest accuracy at almost all the ratios of training set is observed for Adaboost. Accuracy for Naive Bayes\cite{} from fig.\ref{fig:naive_attributes} is very low when compared with Adaboost, it is not very effective in classifying the protocols.
+
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=1\columnwidth]{selected_total_attr_adaboost}
@@ -762,7 +866,14 @@ We observe from Table.\ref{table_iat_group}, Table.\ref{table_riat_group}, Table
 	\caption{Percentage of Training data v/s Accuracy for Adaboost}
 	\label{adaboost_selected_total}
 \end{figure}
-From fig.\ref{adaboost_selected_total}, we observe with only subset (7 out 18 attributes) is giving almost same accuracy(at some points even more), as when we consider total 18 attributes with Adaboost (Supervised) Algorithm\cite{}. Extra attributes is not increasing accuracy at all. With less attributes we have faster classifier. From fig.\ref{fig_k_means_all} we observe selection of subset of attributes increases accuracy dramatically. 
+
+Figure~\ref{adaboost_selected_total} compares Adaboost performance when using the entire data set and using the selected attributes only. 
+From the figure, we observed that using the selected attributes (7 out the 18 attributes) gives us almost the same accuracy(at some points even more), as when we consider the entire 18 attributes. 
+%Extra attributes is not increasing accuracy at all. With less attributes we have faster classifier. From fig.\ref{fig_k_means_all} we observe selection of subset of attributes increases accuracy dramatically.
+
+In sum, we observed that applying the entire attributes degrades classification accuracy when using cluster-based techniques.
+For supervised learning techniques, using the entire attributes does not degrade classification accuracy but using only half of the attributes showed the comparable result with the Adaboost classification technique.
+
 
 \section{Multiple Cluster Models}
 \label{sec:multi_cluster}
@@ -772,7 +883,8 @@ In this paper, we introduced new term called population fraction, which stands f
 P_{clus} = (\frac{flows_{dominant}}{flows_{total}})_{clus}
 \end{equation}
 \subsection{Description of the technique used for classification}
-Based on \ref{table_flow_group} and \ref{table_pkt_size_group} we can observe particular combination of attributes results in better accuracy(like \emph{Average Pkt Size} and \emph{Std Div Pkt Size}). From fig.\ref{fig_k_means_all} it can be observed that the accuracy of selected attributes is around 90\%, which can be further improved by considering multiple trained models(with different combination of attributes) than with one trained model(which has superset of combination of attributes used in multiple models). In a single classifier, supervised or unsupervised, we cannot consider combination of attributes as we have to put every attribute to be considered through training model. So, we advised usage of four different models, each with particular combination of attributes. 
+Based on \ref{table_flow_group} and \ref{table_pkt_size_group} we can observe specific combination of attributes results in better accuracy(like \emph{Average Pkt Size} and \emph{Std. deviation Pkt Size}). From fig.\ref{fig_k_means_all} it can be observed that the accuracy of selected attributes is around 90\%, which can be further improved by considering multiple trained models(with different combination of attributes) than with one trained model(which has superset of combination of attributes used in training of multiple models). In a single classifier, supervised or unsupervised, we cannot consider combination of attributes as we have to put every attribute to be considered through one training model(one training model can have one combination of attributes. For example we can have one model based on \emph{packet size} group and \emph{iat} group combined together, but we cannot have \emph{iat} and \emph{packet size} group separately in one training model). So, we advise usage of four different models, each with specific combination of attributes(one based on \emph{payload size, total packet size} other \emph{payload size, number of packets}, etc.).
+After defining our four models. We have following:
 \begin{itemize}
 	\item \emph{Model 1}
 	In this model we considered attributes, Average Pkt Size and Standard Pkt Size.
@@ -783,8 +895,8 @@ Based on \ref{table_flow_group} and \ref{table_pkt_size_group} we can observe pa
 	\item \emph{Model 4}
 	Considered Number of Packets, Payload Size as the attributes for this model.
 \end{itemize}
-We use results from four models in determining the final classified result of the incoming flow. We tested different hypothesis. Following are the explanation of hypothesis considered in deciding the final classification result.
-\emph{Considered Strategies}
+We use results from four models in determining the final classification result of the incoming flow. We tested different strategies in deciding the final result from four intermediate result. Following are the descriptions of the strategies used.
+\emph{Strategies in deciding final result based on intermediate results}
 \begin{itemize} \itemsep3pt \parskip3pt \parsep3pt
 	\item \emph{Random}
 	Select classification of any of the results from the four models as the final classification result
@@ -805,44 +917,25 @@ We use results from four models in determining the final classified result of th
 \section{Evaluation}
 \label{sec:eval}
 \subsection{Datasets}
-Data had been collected with full payload in early-2014. It has been gathered on various interfaces 1) Wired 2) WIFI 3) 3G and LTE. Data had been collected for individual application in isolation, by generating requests intentionally and capturing bidirectional data.  Considered five tuples (i.e., Source IP, destination IP, source port, destination port and protocol). Used TCP flags to mark the start and end of flow(flow started before the capture, or flows terminating after the capture are not considered in construction of flows). 
+Data had been collected with full payload in early-2014. It has been gathered on various interfaces 1) Wired 2) WIFI 3) 3G and LTE. Data had been collected for individual application in isolation, by generating requests intentionally and capturing bidirectional data.  Considered five tuples (i.e., Source IP, destination IP, source port, destination port and protocol). Used TCP flags to mark the start and end of flow(flow started before the capture, or flows terminating after the capture are not considered in construction of flows).
 
-We selected 5 protocols (Skype, Bittorrent, Http, Edonkey and Gnutella) for further study, criteria for the selection of this protocols is number of flows. 
+We selected 5 protocols (Skype, Bittorrent, Http, Edonkey and Gnutella) for further study, criteria for the selection of this protocols is number of flows.
 \subsection{Cleaning}
-We constructed flows from packets, which we read from \emph{pcap} files using \emph{scapy} a python library. Used community maintained signatures\cite{} available for this protocols from L7 filters. We matched payload of each constructed flow with corresponding signatures from L7, if we find an unmatched flow then it is discarded otherwise labeled as the matched signature.
+We constructed flows from packets, which we read from \emph{pcap} files using \emph{scapy}\cite{scapy} a python library. Used community maintained signatures\cite{L7:2007:misc} available for this protocols from L7 filters. We matched payload of each constructed flow with corresponding signatures from L7, if we find an unmatched flow then it is discarded otherwise labeled as the matched signature.
 
 \subsection{Experimental Setup}
-We used \emph{sklearn} a python library for machine learning algorithms in our study. \emph{sklearn} is the most used python library for data analysis in python. Used \emph{Numpy} for numerical computations, it is a python library to handle numerical computation in efficient way. Used \emph{Matplotlib} for plotting the results, it is a python library which lets us plot the results. 
+We used \emph{sklearn}\cite{scikit-learn} a python library for machine learning algorithms in our study. \emph{sklearn}\cite{scikit-learn} is the most used python library for data analysis in python. Used \emph{Numpy}\cite{numpy} for numerical computations, it is a python library to handle numerical computation in efficient way. Used \emph{Matplotlib} for plotting the results, it is a python library which lets us plot the results.
 
-We divide our data into training and testing partitions. We used training data to train the model and testing data to test the accuracy of the trained model in correctly classifying protocols. 
-During training phase we label clusters in each model(we have 4 of them) based on population fraction(majority based). Each test flow is fed into the trained model and we get the label for that test flow which is compared with the actual label for that flow. Finally 
+We divide our data into training and testing partitions. We used training data to train the model and testing data to test the accuracy of the trained model in correctly classifying protocols.
+During training phase we label clusters in each model(we have 4 of them) based on population fraction(majority based). Each test flow is fed into the trained model and we get the label for that test flow which is compared with the actual label for that flow. Finally
 
-\begin{equation}
-	Accuracy = \frac{TP}{Total Flows}
-\end{equation}
- Where $TP$ stands for True positive, meaning correctly identified flow during testing. Total flows are the total number of flows in the testing set.
+%\begin{equation}
+%	Accuracy = \frac{TP}{Total Flows}
+%\end{equation}
+% Where $TP$ stands for True positive, meaning correctly identified flow during testing. Total flows are the total number of flows in the testing set.
 
 \subsection{Results}
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=1\columnwidth]{adaboost_all_attr_plot.png}
-	% where an .eps filename suffix will be assumed under latex,
-	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-	% via \DeclareGraphicsExtensions.
-	\caption{Percent of training data v/s Accuracy for Adaboost with Groups of Attributes.Plotting Adaboost with each group of attributes.}
-	\label{fig:adaboost_attributes}
-\end{figure}
 
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=1\columnwidth]{naive_bayes_all_attr_plot.png}
-	% where an .eps filename suffix will be assumed under latex,
-	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-	% via \DeclareGraphicsExtensions.
-	\caption{\% of training data v/s Accuracy for Naive Bayes with Groups of Attributes. Plotting Naive Bayes with each group of attributes.}
-	\label{fig:naive_attributes}
-\end{figure}
-From fig.\ref{fig:adaboost_attributes} we notice classification with highest accuracy at almost all the ratios of training set is observed for Adaboost. Accuracy for Naive Bayes\cite{} from fig.\ref{fig:naive_attributes} is very low when compared with Adaboost, it is not very effective in classifying the protocols.
 
 \begin{figure}[!t]
 	\centering
@@ -908,7 +1001,7 @@ From fig.\ref{fig:super_hypo} we notice that the accuracy is higher than traditi
 % reference/describe all of them (a), (b), etc., within the main caption.
 
 
-% An example of a floating table. Note that, for IEEE style tables, the 
+% An example of a floating table. Note that, for IEEE style tables, the
 % \caption command should come BEFORE the table. Table text will default to
 % \footnotesize as IEEE normally uses this smaller font for tables.
 % The \label must come after \caption as always.
@@ -944,11 +1037,11 @@ From fig.\ref{fig:super_hypo} we notice that the accuracy is higher than traditi
 
 \section{Conclusion}
 \label{sec:conc}
-By considering all the attributes of flow in classifying the application doesn't give better results. Selected attributes with combinations gives better accuracy. Accuracy doesn't continually increases along with number of clusters, as we get better accuracy when we are around 40 clusters. 
+By considering all the attributes of flow in classifying the application doesn't give better results. Selected attributes with combinations gives better accuracy. Accuracy doesn't continually increases along with number of clusters, as we get better accuracy when we are around 40 clusters.
 
-Considering IAT and RIAT for classification gives us the least accuracy when compared with other attributes of the flow. Even considering all attributes of packet size and flow also doesn't give better accuracy. 
+Considering IAT and RIAT for classification gives us the least accuracy when compared with other attributes of the flow. Even considering all attributes of packet size and flow also doesn't give better accuracy.
 
-Population fraction will be very good parameter in classification of flow using clustering techniques. 
+Population fraction will be very good parameter in classification of flow using clustering techniques.
 
 
 % conference papers do not normally have an appendix

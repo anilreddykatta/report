@@ -434,14 +434,13 @@
 
 Network traffic classification is one of the essential functions for local and ISP networks for quality of service, network usage statistics, resource provisioning, and security.
 With its importance, a substantial number of previous studies have explored various machine learning techniques based on network flow statistics to improve the accuracy of classification, and using a semi-supervised learning with clustering is one branch of research directions.
-However, we observed fairly unacceptable results from previous clustering-based techniques with our own data set recently collected.
-In particular, simply combining flow attributes for clustering leads to unexpectedly poor accuracy (less than 70\%).
+However, we observed fairly unacceptable results from previous clustering-based techniques with our own data set recently collected. 
+In particular, simply combining flow attributes for clustering leads to unexpectedly poor accuracy for clustering-based classification (less than 70\%).
 
-With this observation, we first examine the impact of attributes to the classification performance, and then
+With these observations, we first examine the impact of attributes to the classification performance, and then
 propose a new technique based on \emph{multiple} trained cluster models to take multiple sets of combinations of attributes into account for classification, rather than simply merging the attributes in a \emph{single} model.
-We will show that our proposed technique significantly improves classification performance by applying multiple trained models, yielding up to 95\% accuracy.
-Our proposed technique includes a \emph{selection} step to reach the final classification decision from outputs from individual trained models, and we will explore a set of selection strategies to see their performance impact.
-%From our extensive experiments, we observed that our proposed technique significantly outperforms existing cluster-based techniques, showing up to 95\% classification accuracy.
+Our proposed technique includes a \emph{selection} step to reach the final classification decision from outputs from individual trained models, and we explore a set of selection strategies to see their performance impact.
+From our extensive experiments, we observed that our proposed technique significantly outperforms existing cluster-based techniques, showing up to 95\% classification accuracy.
 
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -474,7 +473,7 @@ Accurately identifying network-based applications is of major interest for local
 quality of service, network usage statistics, resource provisioning, and security~\cite{Bernaille:2006:EAI:1368436.1368445, DBLP:conf/iwcmc/GrimaudoMB12, DBLP:conf/infocom/XieIKFN12}.
 Earlier, network protocols/applications were identified simply based on TCP/UDP port numbers.
 %, but the traditional identification technique is no longer reliable since many of existing and newly emerging network applications allow dynamic port selection without relying on standard port numbers~\cite{Ohzahata:2005, BitTorrentProto}.
-However, the traditional technique based on port-numbers are proved to be ineffective where accuracy is less than 70\%~\cite{ACAS} since
+However, the traditional technique based on port-numbers are proved to be ineffective where accuracy is less than 70\%~\cite{ACAS} since 
 %network applications using random port numbers or non-standard port numbers are increasing day-by-day.
 many existing and emerging applications use random or non-standard port numbers~\cite{BitTorrentProto,Ohzahata:2005}.
 Also the increasing use of tunneling makes it more difficult to identify network applications based on port numbers~\cite{EURECOM+3174}.
@@ -484,52 +483,39 @@ One approach to overcome the limitation of the port-based application identifica
 While reportedly highly accurate,  the critical drawbacks of the deep packet inspection-based strategy include its inherent limitation to encrypted traffic transformed with cryptographic keys and privacy concerns since many countries may not permit the extraction of full payload information from packets to protect individual privacy.
  %with increasing privacy requirements.
 
-%The limitations of the traditional port-based identification and the payload inspection-based classification
+%The limitations of the traditional port-based identification and the payload inspection-based classification 
 These limitations have suggested to utilize  transport layer characteristics of the application as the differentiator for network application identification, instead of referring to payload information. From the previously proposed techniques~\cite{Bernaille:2006:EAI:1368436.1368445, DBLP:conf/iwcmc/GrimaudoMB12, DBLP:conf/infocom/XieIKFN12}, we can see the combination of transport layer characteristics with machine learning techniques would be an effective alternative for network traffic classification. %accurately identifies the applications, with accuracies comparable to that of payload-based signature matching.
 Several techniques were proposed based on supervised learning~\cite{DBLP:conf/infocom/XieIKFN12}, while some other techniques utilized unsupervised or semi-supervised clustering techniques~\cite{Erman:2006:TCU:1162678.1162679,Bernaille:2006:EAI:1368436.1368445}, reporting promising accuracy for network traffic classification.
-However, what we actually observed with our own data set recently collected are clearly less than what had been reported in the previous studies.
-With the K-means clustering, we observed very poor classification accuracy less than 70\% with the entire attributes (proposed in~\cite{Erman:2006:TCU:1162678.1162679}) and up to 91\% accuracy with only average packet size attribute (as in~\cite{Bernaille:2006:EAI:1368436.1368445} but considered the entire packets in the flow for maximum performance).
-The supervised technique with Adaboot produced overall better results up to 95\% accuracy. % with different training-to-testing data set ratios.
-%
-%In particular, one interesting observation is that simply combining flow attributes for classification leads to unexpectedly poor accuracy for clustering-based classification (less than 70\%), which motivates us to thoroughly examine the impact of flow attributes in this work.\footnote{We use the conventionally accepted definition for flow: a (network) flow is defined as a set of packets for a single session of communication with the five tuples of source IP address, destination IP address, source port number, destination port number, and protocol type.}
-%
-It is known that supervised learning yields better classification accuracy than semi-supervised one~\cite{DBLP:conf/infocom/XieIKFN12}, but at the same time, the latter has several advantages over supervised learning including a benefit of discovering ``new'' applications that have not considered in the trained model~\cite{Erman:2006:TCU:1162678.1162679}.
-In this work, we examine a  semi-supervised clustering approach, and show that it is possible to achieve comparable performance to the supervised one.
+However, what we actually observed with our own data set recently collected are somewhat unacceptable results with the previously proposed techniques. In particular, one interesting observation is that simply combining flow attributes for classification leads to unexpectedly poor accuracy for clustering-based classification (less than 70\%), which motivates us to thoroughly examine the impact of flow attributes in this work.\footnote{We use the conventionally accepted definition for flow: a (network) flow is defined as a set of packets for a single session of communication with the five tuples of source IP address, destination IP address, source port number, destination port number, and protocol type.}
+
 %An alternative approach is to utilize machine learning-based classification techniques with flow statistics, such as flow size, flow duration, packet size, packet inter-arrival time, and so forth, without having privacy concerns~\cite{}.
 
-Here, one interesting observation with clustering-based classification is that it works much better with only a single attribute than with the entire attributes.
-This motivates us to thoroughly evaluate the significance of flow attributes to classification accuracy with a notion of
-\emph{attribute groups}.
+To evaluate the significance of flow attributes to classification accuracy, we use a notion of attribute groups.
 %In this paper, we propose a new traffic classification method based on clustering with the
 An attribute group consists of a set of attributes derived from the same source of information. %a single communication characteristic.
 For example, the packet size group includes the minimum, maximum, average, and standard deviation of packet sizes, which are derived from the ``packet size'' information. % observed from a single flow.
-We consider four attribute groups to examine the performance impact of their combinations: flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group. %, as will be discussed in the Section~\ref{sec:grouping} in detail.
-From our preliminary experiments, we observed that some combinations of attributes work quite better than the other combinations, as will be presented.
+We consider four attribute groups in this study: flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group. %, as will be discussed in the Section~\ref{sec:grouping} in detail.
+From our preliminary experiments, we observed that some combinations of attributes work quite better than the other combinations.
 %Moreover, simply applying a subset of attributes selected based on the evaluation to supervised techniques significantly improves performance compared to using the entire attributes without selection.
+Also 
 
-
-From the initial observation, we may want to choose the best combination of attributes for applying clustering-based classification.
-However, relying only a few attributes could lead to any biased results with inconsistency for a diverse range of network applications to be classified.
-Alternatively, we may want to combine a set of attributes that showed relatively better results, but an interesting observation we made is that simply merging those attributes does not lead to any significant improvement. % with respect to classification accuracy.
-In this work, we develop %a new semi-supervised learning technique based on the attribute groups.
+With the initial observation, we develop %a new semi-supervised learning technique based on the attribute groups.
 a new technique based on \emph{multiple} trained cluster models to take multiple sets of combinations of attributes into account for classification, rather than simply merging the attributes in a \emph{single} model.
 %One of key challenges for this approach is how to use multiple attribute groups to make a single classification decision.
 %To address this, we establish independent cluster models based on individual attribute groups and incorporate the results collected from multiple cluster models.
 One of key challenges for this approach is how to incorporate multiple trained models to make a single classification decision.
-To address this, we set up a set of selection strategies and examine their performance with respect to classification accuracy. %show a certain selection methods outperforms the others.
+To address this, we set up a set of selection strategies and show a certain selection methods outperforms the others.
 %
-%Although it is known that clustering-based techniques generally work poorly compared to supervised ones for network traffic classification~\cite{DBLP:conf/infocom/XieIKFN12},
-%
-We will present that our proposed technique yields up to 95\% in classification accuracy, comparable to the supervised technique.
+Although it is known that clustering-based techniques generally work poorly compared to supervised ones for network traffic classification~\cite{DBLP:conf/infocom/XieIKFN12}, we will present that our proposed technique using multiple cluster models yield almost comparable classification accuracy.
 
 The key contributions of this paper can be summarized as follows:
 
 \begin{itemize}
 	\item We evaluate the significance of flow attributes to classification accuracy with a notion of attribute group.
-	We form four groups from 17 flow attributes, which include flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group, based on inherent characteristics.
-	\item From the evaluation results with the attribute groups, we examine classification accuracy with a subset of attributes that showed relatively better results, using supervised learning methods to ensure their validity.
-	\item We present a new clustering technique that utilizes multiple trained cluster models. % developed from the attribute groups.
-        A set of selection methods will be presented to incorporate multiple trained models.
+	We form four groups for 17 flow attributes in total, which include flow information group, packet size group, packet inter-arrival time group, and relative packet inter-arrival time group.
+	\item From the evaluation results with the attribute groups, we examine classification accuracy with the entire attributes and with the selected ones using supervised learning methods, to ensure  validity of the selection.
+	\item We present a new clustering technique for network traffic classification that utilizes multiple trained cluster models.% developed from the attribute groups.
+        A set of selection methods will be presented to incorporate the multiple trained models.
 	\item We also present experimental results for evaluating the proposed technique. Experiments for sensitivity study are also conducted to see the impact of configurable parameters. %Note that we repeated the same experiments at least five times and report the average to consider variations.
 \end{itemize}
 
@@ -1307,20 +1293,16 @@ The supervised technique shows better results than the others overall, but our t
 \section{Conclusion}
 \label{sec:conc}
 
-The importance of network traffic classification has increased for local and ISP networks for a variety of purposes including quality of service and security. Using a semi-supervised learning with clustering is one branch of research directions for traffic classification, and several studies have been presented with interesting results.
-However, we observed fairly less classification accuracy with our own data set than what have been reported in such previous studies (91\% at best).
+The importance of network traffic classification has increased for local and ISP networks for a variety of purposes including quality of service and security. Using a semi-supervised learning with clustering is one branch of research directions for traffic classification.
+However, we observed fairly unacceptable results (91\% at best) with previously proposed techniques based on clustering.
 
-In this work, we presented a new clustering-based technique that utilizes multiple trained models to improve overall classification performance.
-We first examined the impact of combinations of attributes to the classification performance and constructed multiple trained models, each of which is based on a combination of superior attributes.
-%developed a new technique that utilizes multiple trained cluster models to take multiple sets of combinations of attributes into account for classification.
-To incorporate results from multiple models, we also set up a
-set of selection strategies and examined their performance with
-respect to classification accuracy.
-%The proposed technique also includes a selection step to reach the final classification decision from the multiple models, and we explored a variety of selection strategies for this purpose.
-From a set of experiments, we showed that our technique consistently outperforms the existing clustering-based methods and is fairly comparable to the supervised learning technique with Adaboost, yielding up to 95\% classification accuracy.
-We also observed that the \emph{Quorum} selection strategy works consistently compared to the other strategies and using many more models works better with respect to stability, over different experimental settings.
+In this work, we first examined the impact of attributes to the classification performance, and then
+developed a new technique that utilizes multiple trained cluster models to take multiple sets of combinations of attributes into account for classification.
+The proposed technique also includes a selection step to reach the final classification decision from the multiple models, and we explored a variety of selection strategies for this purpose.
+From a set of experiments, we showed that our technique consistently outperforms the existing clustering-based methods and is fairly comparable to the supervised learning technique with Adaboost.
+We also observed that the Quorum selection strategy works more consistently than the other strategies, and using many more models is slightly better with respect to stability.
 
-%This research is on the way to identify a certain set of network applications from other applications that do not need to be classified (``unknown''), which is the main reason that we chose a clustering-based model.
+This research is on the way to identify a certain set of network applications from other applications that do not need to be classified (``unknown''), which is the main reason that we chose a clustering-based model.
 
 
 

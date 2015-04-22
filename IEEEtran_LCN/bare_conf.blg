@@ -2,31 +2,23 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: bare_conf.aux
 The style file: IEEEtranS.bst
 Database file #1: IEEEabrv.bib
 Database file #2: references.bib
-"{" immediately follows a field part---line 55 of file references.bib
- :  howpublished = \url
- :                     {http://www.bittorrent.org/beps/bep_0003.html},
+Repeated entry---line 77 of file references.bib
+ : @inproceedings{Ohzahata:2005
+ :                             ,
 I'm skipping whatever remains of this entry
-A bad cross reference---entry "DBLP:conf/iwcmc/GrimaudoMB12"
-refers to entry "DBLP:conf/iwcmc/2012", which doesn't exist
-A bad cross reference---entry "DBLP:conf/infocom/XieIKFN12"
-refers to entry "DBLP:conf/infocom/2012", which doesn't exist
 A bad cross reference---entry "conf/IEEEcit/YeXWP09"
 refers to entry "conf/IEEEcit/2009-2", which doesn't exist
-A bad cross reference---entry "DBLP:conf/noms/ParkWKH08"
-refers to entry "DBLP:conf/noms/2008", which doesn't exist
 Warning--I didn't find a database entry for ""
-Warning--I didn't find a database entry for "DBLP:conf/noms/2008"
 Warning--I didn't find a database entry for "conf/IEEEcit/2009-2"
-Warning--I didn't find a database entry for "DBLP:conf/iwcmc/2012"
-Warning--I didn't find a database entry for "DBLP:conf/infocom/2012"
 -- IEEEtranS.bst version 1.12 (2007/01/11) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 ** Sorting version - not for normal IEEE work.
+Warning--to sort, need author, organization, or key in BitTorrentProto
 Name 1 in "Justin Levandoski, Ethan Sommer, and Matthew Strait, with support from Sebastian Celis, Andy Exley and Lillie Kittredge" has a comma at the end for entry L7:2007:misc
 while executing---line 2589 of file IEEEtranS.bst
 Name 1 in "Justin Levandoski, Ethan Sommer, and Matthew Strait, with support from Sebastian Celis, Andy Exley and Lillie Kittredge" has a comma at the end for entry L7:2007:misc
 while executing---line 2601 of file IEEEtranS.bst
 
 Done.
-(There were 7 error messages)
+(There were 4 error messages)

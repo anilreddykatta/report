@@ -21,14 +21,16 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{Bernaille:2006:EAI:1368436.1368445}
+\bibitem{BitTorrentProto}
 \BIBentryALTinterwordspacing
+``{The BitTorrent Protocol Specification}.'' [Online]. Available:
+  \url{http://www.bittorrent.org/beps/bep\_0003.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Bernaille:2006:EAI:1368436.1368445}
 L.~Bernaille, R.~Teixeira, and K.~Salamatian, ``Early application
   identification,'' in \emph{Proceedings of the 2006 ACM CoNEXT Conference},
-  ser. CoNEXT '06.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA:
-  ACM, 2006, pp. 6:1--6:12. [Online]. Available:
-  \url{http://doi.acm.org/10.1145/1368436.1368445}
-\BIBentrySTDinterwordspacing
+  ser. CoNEXT '06, 2006, pp. 6:1--6:12.
 
 \bibitem{scapy}
 \BIBentryALTinterwordspacing
@@ -37,14 +39,20 @@ P.~Biondi, ``{Scapy}: Scapy is a packet manipulation tool for computer
   \url{http://www.secdev.org/projects/scapy/}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Erman:2006:TCU:1162678.1162679}
+\bibitem{EURECOM+3174}
 \BIBentryALTinterwordspacing
+T.~{E}n {N}ajjary, G.~{U}rvoy {K}eller, and M.~{P}ietrzyk,
+  ``{A}pplication-based feature selection for internet traffic
+  classification,'' in \emph{{ITC} 2010, 22nd {I}nternational {T}eletraffic
+  {C}ongress, {S}eptember 7-9, 2010, {A}msterdam, {T}he {N}etherlands},
+  {A}msterdam, {NETHERLANDS}, 09 2010. [Online]. Available:
+  \url{http://www.eurecom.fr/publication/3174}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Erman:2006:TCU:1162678.1162679}
 J.~Erman, M.~Arlitt, and A.~Mahanti, ``Traffic classification using clustering
   algorithms,'' in \emph{Proceedings of the 2006 SIGCOMM Workshop on Mining
-  Network Data}, ser. MineNet '06.\hskip 1em plus 0.5em minus 0.4em\relax New
-  York, NY, USA: ACM, 2006, pp. 281--286. [Online]. Available:
-  \url{http://doi.acm.org/10.1145/1162678.1162679}
-\BIBentrySTDinterwordspacing
+  Network Data}, ser. MineNet '06, 2006, pp. 281--286.
 
 \bibitem{freund1995desicion}
 Y.~Freund and R.~E. Schapire, ``A desicion-theoretic generalization of on-line
@@ -52,29 +60,15 @@ Y.~Freund and R.~E. Schapire, ``A desicion-theoretic generalization of on-line
   theory}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1995, pp. 23--37.
 
 \bibitem{DBLP:conf/iwcmc/GrimaudoMB12}
-\BIBentryALTinterwordspacing
 L.~Grimaudo, M.~Mellia, and E.~Baralis, ``Hierarchical learning for fine
   grained internet traffic classification,'' in \emph{8th International
   Wireless Communications and Mobile Computing Conference, {IWCMC} 2012,
-  Limassol, Cyprus, August 27-31, 2012}, 2012, pp. 463--468. [Online].
-  Available: \url{http://dx.doi.org/10.1109/IWCMC.2012.6314248}
-\BIBentrySTDinterwordspacing
+  Limassol, Cyprus, August 27-31, 2012}, 2012, pp. 463--468.
 
 \bibitem{ACAS}
-\BIBentryALTinterwordspacing
 P.~Haffner, S.~Sen, O.~Spatscheck, and D.~Wang, ``Acas: automated construction
   of application signatures,'' in \emph{Proceedings of the 2005 ACM SIGCOMM
-  workshop on Mining network data}, ser. MineNet '05.\hskip 1em plus 0.5em
-  minus 0.4em\relax New York, NY, USA: ACM, 2005, pp. 197--202. [Online].
-  Available: \url{http://doi.acm.org/10.1145/1080173.1080183}
-\BIBentrySTDinterwordspacing
-
-\bibitem{numpy}
-\BIBentryALTinterwordspacing
-E.~Jones, T.~Oliphant, P.~Peterson \emph{et~al.}, ``{SciPy}: Open source
-  scientific tools for {Python},'' 2001--. [Online]. Available:
-  \url{http://www.scipy.org/}
-\BIBentrySTDinterwordspacing
+  workshop on Mining network data}, ser. MineNet '05, 2005, pp. 197--202.
 
 \bibitem{L7:2007:misc}
 \BIBentryALTinterwordspacing
@@ -83,31 +77,23 @@ E.~S. Justin~Levandoski, A.~E. Matthew~Strait, with support from
   [Online]. Available: \url{http://l7-filter.sourceforge.net/protocols}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Ohzahata:2005}
+S.~Ohzahata, Y.~Hagiwara, M.~Terada, and K.~Kawashima, ``A traffic
+  identification method and evaluations for a pure p2p application,'' in
+  \emph{PAM}, 2005, pp. 55--68.
+
 \bibitem{DBLP:conf/noms/ParkWKH08}
-\BIBentryALTinterwordspacing
 B.~Park, Y.~J. Won, M.~Kim, and J.~W. Hong, ``Towards automated application
   signature generation for traffic identification,'' in \emph{{IEEE/IFIP}
   Network Operations and Management Symposium: Pervasive Management for
   Ubioquitous Networks and Services, {NOMS} 2008, 7-11 April 2008, Salvador,
-  Bahia, Brazil}, 2008, pp. 160--167. [Online]. Available:
-  \url{http://dx.doi.org/10.1109/NOMS.2008.4575130}
-\BIBentrySTDinterwordspacing
-
-\bibitem{scikit-learn}
-F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
-  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
-  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay, ``Scikit-learn:
-  Machine learning in {P}ython,'' \emph{Journal of Machine Learning Research},
-  vol.~12, pp. 2825--2830, 2011.
+  Bahia, Brazil}, 2008, pp. 160--167.
 
 \bibitem{DBLP:conf/infocom/XieIKFN12}
-\BIBentryALTinterwordspacing
 G.~Xie, M.~Iliofotou, R.~Keralapura, M.~Faloutsos, and A.~Nucci, ``Subflow:
   Towards practical flow-level traffic classification,'' in \emph{Proceedings
   of the {IEEE} {INFOCOM} 2012, Orlando, FL, USA, March 25-30, 2012}, 2012, pp.
-  2541--2545. [Online]. Available:
-  \url{http://dx.doi.org/10.1109/INFCOM.2012.6195649}
-\BIBentrySTDinterwordspacing
+  2541--2545.
 
 \bibitem{conf/IEEEcit/YeXWP09}
 M.~Ye, K.~Xu, J.~Wu, and H.~Po, ``Autosig-automatically generating signatures

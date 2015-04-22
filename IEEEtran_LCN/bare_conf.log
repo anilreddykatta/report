@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.11)  11 APR 2015 18:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.11)  21 APR 2015 19:29
 entering extended mode
 **bare_conf.tex
 (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.tex
@@ -567,19 +567,125 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count138
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip61
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks33
+\ex@=\dimen186
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen187
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count139
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count140
+\leftroot@=\count141
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count142
+\DOTSCASE@=\count143
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen188
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count144
+\c@MaxMatrixCols=\count145
+\dotsspace@=\muskip10
+\c@parentequation=\count146
+\dspbrk@lvl=\count147
+\tag@help=\toks34
+\row@=\count148
+\column@=\count149
+\maxfields@=\count150
+\andhelp@=\toks35
+\eqnshift@=\dimen189
+\alignsep@=\dimen190
+\tagshift@=\dimen191
+\tagwidth@=\dimen192
+\totwidth@=\dimen193
+\lineht@=\dimen194
+\@envbody=\toks36
+\multlinegap=\skip62
+\multlinetaggap=\skip63
+\mathdisplay@stack=\toks37
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithms\algorithmic.sty"
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count151
+\c@ALC@line=\count152
+\c@ALC@rem=\count153
+\c@ALC@depth=\count154
+\ALC@tlm=\skip64
+\algorithmicindent=\skip65
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mdwtools\mdwmath.sty"
+Package: mdwmath 1996/04/11 1.1 Nice mathematical things
+\sq@sqrt=\count155
+LaTeX Info: Redefining \sqrt on input line 84.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eqparbox\eqparbox.sty"
+Package: eqparbox 2013/03/15 v4.0 Create equal-widthed boxes
+\eqp@tempdima=\skip66
+\eqp@tempdimb=\skip67
+\eqp@tabular@box=\box47
+\eqp@list@box=\box48
+\eqp@list@indent=\skip68
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\environ\environ.sty"
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\trimspaces\trimspaces.sty"
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip69
+\subfigcapskip=\skip70
+\subfigcaptopadj=\dimen195
+\subfigbottomskip=\skip71
+\subfigcapmargin=\dimen196
+\subfiglabelskip=\skip72
+\c@subfigure=\count156
+\c@lofdepth=\count157
+\c@subtable=\count158
+\c@lotdepth=\count159
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.cfg")
+\subfig@top=\skip73
+\subfig@bottom=\skip74
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen186
-\captionmargin@=\dimen187
-\captionwidth=\dimen188
-\caption@tempdima=\dimen189
-\caption@indent=\dimen190
-\caption@parindent=\dimen191
-\caption@hangindent=\dimen192
+\captionmargin=\dimen197
+\captionmargin@=\dimen198
+\captionwidth=\dimen199
+\caption@tempdima=\dimen200
+\caption@indent=\dimen201
+\caption@parindent=\dimen202
+\caption@hangindent=\dimen203
 Package caption Info: Unknown document class (or package),
 (caption)             standard defaults will be used.
 )
@@ -597,8 +703,9 @@ footnotesize {#1.}~~ }\parbox [t]{\hsize }{\normalfont \footnotesize \noindent
 \unhbox \@tempboxa #2}\else \ifCLASSOPTIONconference \hbox to\hsize {\normalfon
 t \footnotesize \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\normalfont 
 \footnotesize \box \@tempboxa \hfil }\fi \fi \fi .
-\c@ContinuedFloat=\count139
+\c@ContinuedFloat=\count160
 Package caption Info: floatflt package is loaded.
+Package caption Info: subfigure package is loaded.
 Package caption Info: wrapfig package is loaded.
 ) (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 370.
@@ -616,102 +723,131 @@ LaTeX Font Info:    ... okay on input line 370.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count140
-\scratchdimen=\dimen193
-\scratchbox=\box45
-\nofMPsegments=\count141
-\nofMParguments=\count142
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count143
-\MPscratchDim=\dimen194
-\MPnumerator=\count144
-\makeMPintoPDFobject=\count145
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count161
+\scratchdimen=\dimen204
+\scratchbox=\box49
+\nofMPsegments=\count162
+\nofMParguments=\count163
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count164
+\MPscratchDim=\dimen205
+\MPnumerator=\count165
+\makeMPintoPDFobject=\count166
+\everyMPtoPDFconversion=\toks39
 ) ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 472.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 472.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 472.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 472.
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-] <k_means_selected_all.PNG, id=11, 589.0005pt x 444.4605pt>
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 528.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 528.
+ <k_means_selected_all.PNG, id=12, 589.0005pt x 444.4605pt>
 File: k_means_selected_all.PNG Graphic file (type png)
 
 <use k_means_selected_all.PNG>
-Package pdftex.def Info: k_means_selected_all.PNG used on input line 544.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+Package pdftex.def Info: k_means_selected_all.PNG used on input line 605.
+(pdftex.def)             Requested size: 232.19843pt x 175.21748pt.
 
-<early_application_result.PNG, id=13, 589.0005pt x 444.4605pt>
+<early_application_result.PNG, id=14, 589.0005pt x 444.4605pt>
 File: early_application_result.PNG Graphic file (type png)
 
 <use early_application_result.PNG>
-Package pdftex.def Info: early_application_result.PNG used on input line 554.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+Package pdftex.def Info: early_application_result.PNG used on input line 609.
+(pdftex.def)             Requested size: 232.19843pt x 175.21748pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 658.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 658.
 
-Overfull \hbox (2.25345pt too wide) in paragraph at lines 603--619
-[][]
+Overfull \hbox (2.28824pt too wide) in paragraph at lines 658--674
+ [][] 
  []
 
-[2 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/k_means_selected_al
-l.PNG>]
-Underfull \vbox (badness 6893) has occurred while \output is active []
+[2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Overfull \hbox (12.26451pt too wide) in paragraph at lines 665--732
-[][] 
+ [3 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/k_means_selected_a
+ll.PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/early_applicat
+ion_result.PNG>]
+Overfull \hbox (12.26451pt too wide) in paragraph at lines 729--796
+ [][] 
  []
 
-[3 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/early_application_r
-esult.PNG>] <naive_bayes_all_attr_plot.png, id=30, 589.0005pt x 444.4605pt>
+<naive_bayes_all_attr_plot.png, id=29, 1233.6489pt x 615.0177pt>
 File: naive_bayes_all_attr_plot.png Graphic file (type png)
 
 <use naive_bayes_all_attr_plot.png>
-Package pdftex.def Info: naive_bayes_all_attr_plot.png used on input line 822.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
+Package pdftex.def Info: naive_bayes_all_attr_plot.png used on input line 911.
+(pdftex.def)             Requested size: 232.19843pt x 115.75659pt.
 
-<adaboost_all_attr_plot.png, id=31, 589.0005pt x 444.4605pt>
+<adaboost_all_attr_plot.png, id=30, 1233.6489pt x 615.0177pt>
 File: adaboost_all_attr_plot.png Graphic file (type png)
 
 <use adaboost_all_attr_plot.png>
-Package pdftex.def Info: adaboost_all_attr_plot.png used on input line 831.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
- [4 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/naive_bayes_all_at
-tr_plot.png> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/adaboost_
-all_attr_plot.png>]
-<selected_total_attr_adaboost.PNG, id=37, 589.0005pt x 444.4605pt>
-File: selected_total_attr_adaboost.PNG Graphic file (type png)
+Package pdftex.def Info: adaboost_all_attr_plot.png used on input line 915.
+(pdftex.def)             Requested size: 232.19843pt x 115.75659pt.
+ [4]
+<multi_cluster_pictorial.png, id=35, 1175.14032pt x 490.08093pt>
+File: multi_cluster_pictorial.png Graphic file (type png)
 
-<use selected_total_attr_adaboost.PNG>
-Package pdftex.def Info: selected_total_attr_adaboost.PNG used on input line 86
-2.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
- [5 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/selected_total_att
-r_adaboost.PNG>]
-<hypothesis_updated.PNG, id=42, 589.0005pt x 444.4605pt>
+<use multi_cluster_pictorial.png>
+Package pdftex.def Info: multi_cluster_pictorial.png used on input line 980.
+(pdftex.def)             Requested size: 504.0pt x 210.1848pt.
+ [5 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/naive_bayes_all_at
+tr_plot.png> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/adaboost_
+all_attr_plot.png>] [6 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN
+/multi_cluster_pictorial.png>]
+<hypothesis_updated.PNG, id=48, 589.0005pt x 444.4605pt>
 File: hypothesis_updated.PNG Graphic file (type png)
 
 <use hypothesis_updated.PNG>
-Package pdftex.def Info: hypothesis_updated.PNG used on input line 942.
+Package pdftex.def Info: hypothesis_updated.PNG used on input line 1142.
 (pdftex.def)             Requested size: 252.0pt x 190.15804pt.
 
-<super_hypo_accuracy_percent_training.PNG, id=43, 589.0005pt x 444.4605pt>
+<nmodels_cluster_quorum.PNG, id=49, 589.0005pt x 444.4605pt>
+File: nmodels_cluster_quorum.PNG Graphic file (type png)
+
+<use nmodels_cluster_quorum.PNG>
+Package pdftex.def Info: nmodels_cluster_quorum.PNG used on input line 1155.
+(pdftex.def)             Requested size: 232.19843pt x 175.21748pt.
+
+<nmodels_training_quorum.PNG, id=50, 589.0005pt x 444.4605pt>
+File: nmodels_training_quorum.PNG Graphic file (type png)
+
+<use nmodels_training_quorum.PNG>
+Package pdftex.def Info: nmodels_training_quorum.PNG used on input line 1159.
+(pdftex.def)             Requested size: 232.19843pt x 175.21748pt.
+
+<super_hypo_accuracy_percent_training.PNG, id=51, 1233.6489pt x 615.0177pt>
 File: super_hypo_accuracy_percent_training.PNG Graphic file (type png)
 
 <use super_hypo_accuracy_percent_training.PNG>
 Package pdftex.def Info: super_hypo_accuracy_percent_training.PNG used on input
- line 954.
-(pdftex.def)             Requested size: 252.0pt x 190.15804pt.
- [6 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/hypothesis_updated
+ line 1216.
+(pdftex.def)             Requested size: 252.0pt x 125.62898pt.
+ [7 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/hypothesis_updated
 .PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/super_hypo_accur
 acy_percent_training.PNG>]
-(C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.bbl)
+(C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 81--84
+[]\OT1/ptm/m/n/10 S. Ohza-hata, Y. Hagi-wara, M. Ter-ada, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--84
+\OT1/ptm/m/n/10 K. Kawashima, ``A traf-fic iden-ti-fi-ca-tion method
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/nmodels_cluster_qu
+orum.PNG> <C:/Users/KattaAnil/Desktop/DR_KIM_RA/paper/IEEEtran_LCN/nmodels_trai
+ning_quorum.PNG>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -723,31 +859,35 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7] (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux) ) 
+[9
+
+] (C:\Users\KattaAnil\Desktop\DR_KIM_RA\paper\IEEEtran_LCN\bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 13677 strings out of 493921
- 271752 string characters out of 3144863
- 353307 words of memory out of 3000000
- 16721 multiletter control sequences out of 15000+200000
+ 14674 strings out of 493921
+ 284598 string characters out of 3144863
+ 366834 words of memory out of 3000000
+ 17674 multiletter control sequences out of 15000+200000
  38600 words of font info for 72 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 48i,13n,54p,1242b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C
-:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/time
-s/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.p
-fb>
-Output written on bare_conf.pdf (7 pages, 517102 bytes).
+ 48i,13n,54p,1242b,577s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/
+Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times
+/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pf
+b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (9 pages, 787152 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
+ 111 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 

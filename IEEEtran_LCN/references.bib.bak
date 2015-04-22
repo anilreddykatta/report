@@ -1,3 +1,9 @@
+@misc{BitTorrentProto,
+  title = {{The BitTorrent Protocol Specification}},
+  howpublished = "\url{http://www.bittorrent.org/beps/bep_0003.html}",
+  year = {2008},
+}
+
 @inproceedings{Ohzahata:2005,
   author    = {Satoshi Ohzahata and
                Yoichi Hagiwara and
@@ -8,17 +14,6 @@
   booktitle = {PAM},
   year      = {2005},
   pages     = {55-68},
-}
-
-@inproceedings{EURECOM+3174,
-  doi =         {http://dx.doi.org/10.1109/ITC.2010.5608734 },
-  year =        {2010},
-  title =       {{A}pplication-based feature selection for internet traffic classification},
-  author =      {{E}n-{N}ajjary, {T}aoufik and  {U}rvoy-{K}eller, {G}uillaume and  {P}ietrzyk, {M}arcin},
-  booktitle =   {{ITC} 2010, 22nd {I}nternational {T}eletraffic {C}ongress, {S}eptember 7-9, 2010, {A}msterdam, {T}he {N}etherlands},
-  address =     {{A}msterdam, {NETHERLANDS}},
-  month =       {09},
-  url =  	      {http://www.eurecom.fr/publication/3174}
 }
 
 @techreport{EURECOM+3075,
@@ -56,23 +51,20 @@ institution = {Eurecom}, url = {http://www.eurecom.fr/publication/3075},
 }
 
 @inproceedings{conf/IEEEcit/YeXWP09,
-  added-at = {2010-01-06T00:00:00.000+0100},
-  author = {Ye, Mingjiang and Xu, Ke and Wu, Jianping and Po, Hu},
-  biburl = {http://www.bibsonomy.org/bibtex/2618bfef5c24a503899a401fc9fddfca8/dblp},
-  booktitle = {CIT (2)},
-  crossref = {conf/IEEEcit/2009-2},
-  date = {2010-01-06},
-  description = {dblp},
-  isbn = {978-0-7695-3836-5},
-  keywords = {dblp},
-  pages = {104-109},
-  publisher = {IEEE Computer Society},
-  timestamp = {2010-01-07T11:34:40.000+0100},
-  title = {AutoSig-Automatically Generating Signatures for Applications.},
-  year = 2009
+	added-at = {2010-01-06T00:00:00.000+0100},
+	author = {Ye, Mingjiang and Xu, Ke and Wu, Jianping and Po, Hu},
+	booktitle = {CIT (2)},
+	crossref = {conf/IEEEcit/2009-2},
+	date = {2010-01-06},
+	isbn = {978-0-7695-3836-5},
+	year = 2009
 }
 
-
+@misc{BitTorrentProto,
+	title = {{The BitTorrent Protocol Specification}},
+	howpublished = \url{http://www.bittorrent.org/beps/bep_0003.html},
+	year = {2008},
+}
 
 @inproceedings{Ohzahata:2005,
 	author    = {Satoshi Ohzahata and
@@ -238,11 +230,6 @@ institution = {Eurecom}, url = {http://www.eurecom.fr/publication/3075},
 	author = {Justin Levandoski, Ethan Sommer, and Matthew Strait, with support from Sebastian Celis, Andy Exley and Lillie Kittredge},
 	title = {{L7} Signatures for various protocols},
 	url = {http://l7-filter.sourceforge.net/protocols}
-}
-
-@Misc{BitTorrentProto,
-  title = {{The BitTorrent Protocol Specification}},
-	url = {http://www.bittorrent.org/beps/bep\_0003.html}
 }
 
 @article{scikit-learn,
